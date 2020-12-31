@@ -13,6 +13,8 @@
         "node": true
     },
     "rules": {
+        "no-unused-vars": "warn",
+        "global-require": "off",
         "no-use-before-define": "off",
         "import/extensions": ["warn", "never"],
         "import/prefer-default-export": "off",
