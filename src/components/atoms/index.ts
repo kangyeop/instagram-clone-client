@@ -1,5 +1,5 @@
-import SearchBar from "./SearchBar";
+import FontAwesome from "./FontAwesome";
 import HeaderIcon from "./HeaderIcon";
 import Profile from "./Profile";
 
-export { SearchBar, HeaderIcon, Profile };
+export { FontAwesome, HeaderIcon, Profile };

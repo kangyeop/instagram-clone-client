@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { InputBox, Text, Container, Icon, TextContainer } from "./styles";
+import { FontAwesome } from "components/atoms";
+import { InputBox, Text, Container, TextContainer, InputContainer } from "./styles";
 
 // interface IProps {}
 
@@ -18,8 +19,8 @@ const SearchBar: React.FC = () => {
     return (
         <Container>
             {!isShow ? (
-                <>
-                    <Icon code="'\f002'" className="fa" />
+                <InputContainer>
+                    <FontAwesome code="'\f002'" style={{ marginRight: "6px" }} />
                     <InputBox
                         value={value}
                         onBlur={() => {
@@ -29,22 +30,20 @@ const SearchBar: React.FC = () => {
                         placeholder="검색"
                         ref={inputRef}
                     />
-                    <Icon
-                        isRight
+                    <FontAwesome
                         onClick={() => {
                             setValue("");
                             setIsShow(true);
                         }}
                         code="'\f057'"
-                        className="fa"
                     />
-                </>
+                </InputContainer>
             ) : (
                 <TextContainer
                     onClick={() => {
                         setIsShow(false);
                     }}>
-                    <Icon code="'\f002'" className="fa" />
+                    <FontAwesome code="'\f002'" style={{ marginRight: "6px" }} />
                     <Text>검색</Text>
                 </TextContainer>
             )}

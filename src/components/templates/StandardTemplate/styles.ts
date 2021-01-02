@@ -7,5 +7,6 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.div`
+    width: 935px;
     background-color: rgba(var(--b3f, 250, 250, 250), 1);
 `;

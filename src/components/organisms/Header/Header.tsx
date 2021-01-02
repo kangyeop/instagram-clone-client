@@ -1,7 +1,6 @@
 import React from "react";
 import LogoFile from "assets/images/logo-2x.png";
-import { SearchBar } from "components/atoms";
-import { HeaderRight } from "components/molecules";
+import { HeaderRight, SearchBar } from "components/molecules";
 import { Container, HeaderContainer, Image } from "./styles";
 
 // interface IProps {}
