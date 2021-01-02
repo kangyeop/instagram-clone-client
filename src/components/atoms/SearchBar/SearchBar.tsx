@@ -30,6 +30,7 @@ const SearchBar: React.FC = () => {
                         ref={inputRef}
                     />
                     <Icon
+                        isRight
                         onClick={() => {
                             setValue("");
                             setIsShow(true);

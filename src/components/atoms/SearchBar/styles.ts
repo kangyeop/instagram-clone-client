@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 interface ICode {
     code: string;
+    isRight?: boolean;
 }
 
 export const Container = styled.div`
-    width: 200px;
+    width: 205px;
     height: 20px;
 
     background-color: #fafafa;
@@ -13,7 +14,7 @@ export const Container = styled.div`
     border: solid 1px #dbdbdb;
     border-radius: 3px;
 
-    padding: 3px 10px 3px 10px;
+    padding: 3px 0px 3px 10px;
 `;
 
 export const InputContainer = styled.div`
@@ -39,20 +40,19 @@ export const TextContainer = styled.div`
 
 export const Icon = styled.span<ICode>`
     ::before {
-        margin-right: 6px;
+        margin-right: ${({ isRight }) => (isRight ? "0px" : "6px")};
 
         font-size: 14px;
         line-height: 18px;
 
         color: #8e8e8e;
         content: ${({ code }) => code};
-        /* content: "\f057"; */
     }
 `;
 
 export const InputBox = styled.input`
     background-color: #fafafa;
-    width: 80%;
+    width: 77%;
 
     border: 0;
 
