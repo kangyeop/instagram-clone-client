@@ -6,24 +6,17 @@ import { StandardTemplate } from "components/templates";
 const Welcome: React.FC = () => {
     const [{ data, loading, error }] = useAxios("/users?page=2");
 
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
     if (error) {
-        console.log(error);
+        return <p>Error!!!</p>;
     }
 
     return (
         <StandardTemplate>
-            <div className="App">
-                {loading && <p>Loading...</p>}
-                {error && <p>Error!!!</p>}
-                {data && (
-                    <div>
-                        data
-                        {data.data.map((res: any) => (
-                            <div>{res.id}</div>
-                        ))}
-                    </div>
-                )}
-            </div>
+            <div className="App" />
         </StandardTemplate>
     );
 };
