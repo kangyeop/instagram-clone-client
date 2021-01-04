@@ -1,4 +1,5 @@
 import HeaderRight from "./HeaderRight";
 import SearchBar from "./SearchBar";
+import PostHeader from "./PostHeader";
 
-export { HeaderRight, SearchBar };
+export { HeaderRight, SearchBar, PostHeader };
