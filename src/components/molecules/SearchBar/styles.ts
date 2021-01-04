@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 200px;
-    height: 20px;
+    width: 215px;
+    height: 28px;
 
     background-color: #fafafa;
 
@@ -10,6 +10,8 @@ export const Container = styled.div`
     border-radius: 3px;
 
     padding: 3px 10px 3px 10px;
+
+    box-sizing: border-box;
 `;
 
 export const InputContainer = styled.div`

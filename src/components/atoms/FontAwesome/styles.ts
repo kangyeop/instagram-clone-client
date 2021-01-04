@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 interface ICode {
     code: string;
-    isRight?: boolean;
 }
 
 export const FontIcon = styled.span<ICode>`
