@@ -13,7 +13,6 @@ export const TextArea = styled.textarea`
     box-sizing: border-box;
 
     ::placeholder {
-        font-weight: 300;
         color: #8e8e8e;
     }
 `;
