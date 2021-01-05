@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface IContainer {
+    height: string;
+}
+
+export const Container = styled.div<IContainer>`
     padding: 16px;
-    height: 60px;
+
+    width: 100%;
+    height: ${({ height }) => height};
 
     box-sizing: border-box;
 

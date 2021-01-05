@@ -2,9 +2,13 @@ import React from "react";
 import { Profile, Nickname } from "components/atoms";
 import { Container } from "./styles";
 
-const PostHeader: React.FC = () => {
+interface IProps {
+    height: string;
+}
+
+const PostHeader: React.FC<IProps> = ({ height }) => {
     return (
-        <Container>
+        <Container height={height}>
             <Profile size="32px" />
             <Nickname text="kangyeop" size="14px" style={{ marginLeft: "14px" }} />
         </Container>
