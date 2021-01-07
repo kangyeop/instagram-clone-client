@@ -2,16 +2,13 @@ import React from "react";
 
 interface IProps {
     d: string;
-    link: string;
 }
 
-const SVGImage: React.FC<IProps> = ({ d, link }) => {
+const SVGImage: React.FC<IProps> = ({ d }) => {
     return (
-        <a href={link}>
-            <svg height="22" width="22" viewBox="0 0 48 48">
-                <path d={d} />
-            </svg>
-        </a>
+        <svg height="22" width="22" viewBox="0 0 48 48">
+            <path d={d} />
+        </svg>
     );
 };
 
