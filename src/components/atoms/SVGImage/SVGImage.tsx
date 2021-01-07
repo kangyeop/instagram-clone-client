@@ -2,11 +2,13 @@ import React from "react";
 
 interface IProps {
     d: string;
+    height: string;
+    width: string;
 }
 
-const SVGImage: React.FC<IProps> = ({ d }) => {
+const SVGImage: React.FC<IProps> = ({ d, height, width }) => {
     return (
-        <svg height="22" width="22" viewBox="0 0 48 48">
+        <svg height={height} width={width} viewBox="0 0 48 48">
             <path d={d} />
         </svg>
     );
