@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { UploadButton } from "components/atoms";
-import { AiFillCloseCircle } from "react-icons/ai";
 import { Container, Image, ListContainer, CloseIcon } from "./styles";
 
 interface IProps {
