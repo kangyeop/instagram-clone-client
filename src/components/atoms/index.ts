@@ -1,4 +1,4 @@
-import HeaderIcon from "./HeaderIcon";
+import SVGImage from "./SVGImage";
 import Profile from "./Profile";
 
-export { HeaderIcon, Profile };
+export { SVGImage, Profile };
