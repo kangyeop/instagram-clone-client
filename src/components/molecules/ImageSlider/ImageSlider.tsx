@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { UploadButton } from "components/atoms";
+import React, { useState } from "react";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { Slider, Image, SliderContent, ArrowContainer } from "./styles";
 
 interface IProps {
-    setImages: any;
+    images: string[];
 }
 
-const ImageSlider: React.FC<IProps> = ({ setImages }) => {
-    const [images, setImgages] = useState<string[]>([]);
+const transition = 0.45;
+
+const ImageSlider: React.FC<IProps> = ({ images }) => {
     const [translate, setTranslate] = useState<number>(0);
-    const [transition, setTransition] = useState<number>(0);
     const [activeIndex, setActiveIndex] = useState<number>(0);
 
     const nextSlide = () => {
-        if (activeIndex === images.length) {
+        if (activeIndex === images.length - 1) {
             return;
         }
 
@@ -31,34 +30,19 @@ const ImageSlider: React.FC<IProps> = ({ setImages }) => {
         setTranslate((activeIndex - 1) * 598);
     };
 
-    const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-            const base64 = reader.result;
-
-            if (base64) {
-                setImgages([...images, base64.toString()]);
-            }
-        };
-        if (e.target.files?.length) {
-            reader.readAsDataURL(e.target.files[0]);
-            setImages(...[e.target.files[0]]);
-        }
-    };
-
-    useEffect(() => {
-        // setState({ ...state, activeIndex: images.length });
-    }, [images]);
-
     return (
         <Slider>
-            <ArrowContainer direction="left" onClick={prevSlide}>
-                <IoIosArrowDropleft size="30px" color="#8e8e8e" />
-            </ArrowContainer>
-            <ArrowContainer direction="right" onClick={nextSlide}>
-                <IoIosArrowDropright size="30px" color="#8e8e8e" />
-            </ArrowContainer>
+            {activeIndex ? (
+                <ArrowContainer direction="left" onClick={prevSlide}>
+                    <IoIosArrowDropleft size="30px" color="#8e8e8e" />
+                </ArrowContainer>
+            ) : null}
+            {activeIndex !== images.length - 1 ? (
+                <ArrowContainer direction="right" onClick={nextSlide}>
+                    <IoIosArrowDropright size="30px" color="#8e8e8e" />
+                </ArrowContainer>
+            ) : null}
+
             <SliderContent transition={transition} translate={translate}>
                 {images.length ? (
                     images.map((image: string, index: number) => (
@@ -71,7 +55,6 @@ const ImageSlider: React.FC<IProps> = ({ setImages }) => {
                 ) : (
                     <></>
                 )}
-                <UploadButton onChange={handleChangeFile} />
             </SliderContent>
         </Slider>
     );

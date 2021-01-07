@@ -16,8 +16,6 @@ export const Slider = styled.div`
     overflow: hidden;
     padding: 0;
 
-    position: relative;
-
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -25,6 +23,8 @@ export const Slider = styled.div`
     box-sizing: border-box;
 
     list-style: none;
+
+    position: relative;
 `;
 
 export const SliderContent = styled.div<ISlider>`
@@ -39,6 +39,7 @@ export const SliderContent = styled.div<ISlider>`
 export const Image = styled.img`
     width: 100%;
     height: 100%;
+    object-fit: cover;
 `;
 
 export const ArrowContainer = styled.div<IArrow>`
