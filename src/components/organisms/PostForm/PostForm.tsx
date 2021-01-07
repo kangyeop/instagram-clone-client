@@ -4,6 +4,7 @@ import { ImageSelector, PostHeader } from "components/molecules";
 import { ImageContainer, ContentContainer, SubmitContainer } from "./styles";
 
 interface IProps {
+    // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     onClick: () => void;
     canClick: boolean;

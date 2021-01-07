@@ -4,6 +4,7 @@ import { ImageButton, ImageInput } from "./styles";
 
 interface IProps {
     style?: React.CSSProperties;
+    // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
