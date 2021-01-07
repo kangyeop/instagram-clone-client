@@ -1,6 +1,6 @@
 import React from "react";
 import { SVGImage, Profile } from "components/atoms";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Container } from "./styles";
 
 const HeaderRight: React.FC = () => {
@@ -17,7 +17,9 @@ const HeaderRight: React.FC = () => {
 
     return (
         <Container>
-            <SVGImage link="/" d={pathname === "/" ? path.clickedHome : path.normalHome} />
+            <Link to="/">
+                <SVGImage d={pathname === "/" ? path.clickedHome : path.normalHome} />
+            </Link>
             <Profile style={{ marginLeft: "22px" }} size="22px" />
         </Container>
     );
