@@ -5,7 +5,7 @@ interface IProps {
     link: string;
 }
 
-const HeaderIcon: React.FC<IProps> = ({ d, link }) => {
+const SVGImage: React.FC<IProps> = ({ d, link }) => {
     return (
         <a href={link}>
             <svg height="22" width="22" viewBox="0 0 48 48">
@@ -15,4 +15,4 @@ const HeaderIcon: React.FC<IProps> = ({ d, link }) => {
     );
 };
 
-export default HeaderIcon;
+export default SVGImage;
