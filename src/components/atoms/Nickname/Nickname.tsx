@@ -10,11 +10,9 @@ interface IProps {
 
 const Nickname: React.FC<IProps> = ({ style, size, text }) => {
     return (
-        // <Link to={`/${text}`} style={{ textDecoration: "none" }}>
-        <NicknameText style={style} size={size}>
+        <NicknameText to={`/${text}`} style={style} size={size}>
             {text}
         </NicknameText>
-        // </Link>
     );
 };
 
