@@ -18,7 +18,11 @@ const HeaderRight: React.FC = () => {
     return (
         <Container>
             <Link to="/">
-                <SVGImage d={pathname === "/" ? path.clickedHome : path.normalHome} />
+                <SVGImage
+                    height="22"
+                    width="22"
+                    d={pathname === "/" ? path.clickedHome : path.normalHome}
+                />
             </Link>
             <Profile style={{ marginLeft: "22px" }} size="22px" />
         </Container>
