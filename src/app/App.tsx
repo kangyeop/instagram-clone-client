@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { Welcome } from "pages";
+import { Welcome, PostRegister } from "pages";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/theme";
 
@@ -8,6 +8,7 @@ const App = () => (
     <ThemeProvider theme={theme}>
         <Switch>
             <Route exact path="/" component={Welcome} />
+            <Route exact path="/PostRegister" component={PostRegister} />
             {/* <Route
                     exact
                     path="/NotFound"
