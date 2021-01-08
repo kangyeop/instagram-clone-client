@@ -20,7 +20,7 @@ const CommentIcon: React.FC<IProps> = ({ isLike, handleClickLike, handleClickCom
 
     return (
         <Container>
-            <IconContainer onClick={handleClickLike}>
+            <IconContainer onClick={handleClickLike} style={{ marginRight: "16px" }}>
                 <SVGImage
                     height="24"
                     width="24"

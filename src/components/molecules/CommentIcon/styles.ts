@@ -5,6 +5,10 @@ export const Container = styled.div`
 `;
 
 export const IconContainer = styled.div`
-    padding: 8px;
+    height: 40px;
+
+    padding: 8px 0px;
+
+    box-sizing: border-box;
     cursor: pointer;
 `;
