@@ -1,15 +1,17 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { Welcome, PostRegister } from "pages";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Welcome, PostRegister, PostPage } from "pages";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/theme";
 
 const App = () => (
     <ThemeProvider theme={theme}>
-        <Switch>
-            <Route exact path="/" component={Welcome} />
-            <Route exact path="/PostRegister" component={PostRegister} />
-            {/* <Route
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/" component={Welcome} />
+                <Route exact path="/PostRegister" component={PostRegister} />
+                <Route exact path="/PostPage/:id" component={PostPage} />
+                {/* <Route
                     exact
                     path="/NotFound"
                     render={(props: RouteComponentProps<any>) => (
@@ -31,8 +33,9 @@ const App = () => (
                     )}
                 /> */}
 
-            {/* <Redirect to="/NotFound" /> */}
-        </Switch>
+                {/* <Redirect to="/NotFound" /> */}
+            </Switch>
+        </BrowserRouter>
     </ThemeProvider>
 );
 
