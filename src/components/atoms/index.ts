@@ -5,5 +5,19 @@ import Nickname from "./Nickname";
 import TextInput from "./TextInput";
 import SubmitButton from "./SubmitButton";
 import UploadButton from "./UploadButton";
+import CommentInput from "./CommentInput";
+import TimeText from "./TimeText";
+import ReComment from "./ReComment";
 
-export { SVGImage, Profile, Nickname, BorderCard, TextInput, SubmitButton, UploadButton };
+export {
+    SVGImage,
+    Profile,
+    Nickname,
+    BorderCard,
+    TextInput,
+    SubmitButton,
+    UploadButton,
+    CommentInput,
+    TimeText,
+    ReComment,
+};
