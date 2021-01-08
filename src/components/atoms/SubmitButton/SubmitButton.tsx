@@ -9,7 +9,7 @@ interface IProps {
 
 const SubmitButton: React.FC<IProps> = ({ onClick, canClick, style, children }) => {
     return (
-        <Button style={style} onClick={onClick} canClick={canClick}>
+        <Button style={style} onClick={onClick} canClick={canClick} disabled={!canClick}>
             {children}
         </Button>
     );
