@@ -9,13 +9,14 @@ interface IProps {
     onClick: () => void;
     canClick: boolean;
     setImages: any;
+    images: File[];
 }
 
-const PostForm: React.FC<IProps> = ({ onChange, onClick, canClick, setImages }) => {
+const PostForm: React.FC<IProps> = ({ onChange, onClick, canClick, setImages, images }) => {
     return (
         <BorderCard>
             <ImageContainer>
-                <ImageSelector setImages={setImages} />
+                <ImageSelector setImages={setImages} images={images} />
             </ImageContainer>
             <ContentContainer>
                 <PostHeader height="72px" />
