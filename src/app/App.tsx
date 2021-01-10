@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import { Welcome } from "pages";
+import { Welcome, PostRegister, PostPage } from "pages";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/theme";
 
@@ -9,6 +9,8 @@ const App = () => (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={Welcome} />
+                <Route exact path="/PostRegister" component={PostRegister} />
+                <Route exact path="/PostPage/:id" component={PostPage} />
                 {/* <Route
                     exact
                     path="/NotFound"

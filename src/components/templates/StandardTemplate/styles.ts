@@ -14,4 +14,5 @@ export const Body = styled.div`
     width: 935px;
 
     background-color: #fafafa;
+    padding-top: 36px;
 `;
