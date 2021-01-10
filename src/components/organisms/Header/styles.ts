@@ -12,13 +12,17 @@ export const Container = styled.header`
     justify-content: center;
 
     border-bottom: 1px solid #dbdbdb;
+
+    position: sticky;
+    top: 0;
+    z-index: 2;
 `;
 
 export const HeaderContainer = styled.div`
     width: 935px;
     padding: 0px 20px;
 
-    /* background-color: black; */
+    background-color: #ffffff;
 
     display: flex;
     align-items: center;
