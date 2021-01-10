@@ -1,5 +1,6 @@
 import React from "react";
 import LogoFile from "assets/images/logo-2x.png";
+import { Link } from "react-router-dom";
 import { HeaderRight, SearchBar } from "components/molecules";
 import { Container, HeaderContainer, Image } from "./styles";
 
@@ -9,7 +10,9 @@ const Header: React.FC = () => {
     return (
         <Container>
             <HeaderContainer>
-                <Image src={LogoFile} />
+                <Link to="/">
+                    <Image src={LogoFile} />
+                </Link>
                 <SearchBar />
                 <HeaderRight />
             </HeaderContainer>
