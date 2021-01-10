@@ -1,17 +1,22 @@
 import styled from "styled-components";
 
-interface ISlider {
+interface ISliderContent {
     translate?: any;
     transition?: any;
+}
+
+interface ISlider {
+    width: string;
+    height: string;
 }
 
 interface IArrow {
     direction: string;
 }
 
-export const Slider = styled.div`
-    width: 598px;
-    height: 598px;
+export const Slider = styled.div<ISlider>`
+    width: ${({ width }) => width};
+    height: ${({ height }) => height};
 
     overflow: hidden;
     padding: 0;
@@ -27,7 +32,7 @@ export const Slider = styled.div`
     position: relative;
 `;
 
-export const SliderContent = styled.div<ISlider>`
+export const SliderContent = styled.div<ISliderContent>`
     transform: translateX(-${(props) => props.translate}px);
     transition: transform ease-out ${(props) => props.transition}s;
     height: 100%;
@@ -43,7 +48,7 @@ export const Image = styled.img`
 `;
 
 export const ArrowContainer = styled.div<IArrow>`
-    z-index: 100;
+    z-index: 1;
     cursor: pointer;
 
     position: absolute;

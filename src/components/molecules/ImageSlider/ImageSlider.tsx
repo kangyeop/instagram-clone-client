@@ -4,13 +4,17 @@ import { Slider, Image, SliderContent, ArrowContainer } from "./styles";
 
 interface IProps {
     images: string[];
+    width: string;
+    height: string;
 }
 
 const transition = 0.45;
 
-const ImageSlider: React.FC<IProps> = ({ images }) => {
+const ImageSlider: React.FC<IProps> = ({ images, height, width }) => {
     const [translate, setTranslate] = useState<number>(0);
     const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    const xSize = parseFloat(width.substr(0, width.length - 2));
 
     const nextSlide = () => {
         if (activeIndex === images.length - 1) {
@@ -18,7 +22,7 @@ const ImageSlider: React.FC<IProps> = ({ images }) => {
         }
 
         setActiveIndex(activeIndex + 1);
-        setTranslate((activeIndex + 1) * 598);
+        setTranslate((activeIndex + 1) * xSize);
     };
 
     const prevSlide = () => {
@@ -27,11 +31,11 @@ const ImageSlider: React.FC<IProps> = ({ images }) => {
         }
 
         setActiveIndex(activeIndex - 1);
-        setTranslate((activeIndex - 1) * 598);
+        setTranslate((activeIndex - 1) * xSize);
     };
 
     return (
-        <Slider>
+        <Slider width={width} height={height}>
             {activeIndex ? (
                 <ArrowContainer direction="left" onClick={prevSlide}>
                     <IoIosArrowDropleft size="30px" color="#8e8e8e" />
