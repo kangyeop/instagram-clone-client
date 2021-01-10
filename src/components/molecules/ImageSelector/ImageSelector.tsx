@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const ImageSelector: React.FC<IProps> = ({ setImages }) => {
-    const [images, setImgages] = useState<string[]>([]);
+    const [previewImages, setPreviewImages] = useState<string[]>([]);
 
     const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const reader = new FileReader();
@@ -16,7 +16,7 @@ const ImageSelector: React.FC<IProps> = ({ setImages }) => {
             const base64 = reader.result;
 
             if (base64) {
-                setImgages([...images, base64.toString()]);
+                setPreviewImages([...previewImages, base64.toString()]);
             }
         };
         if (e.target.files?.length) {
@@ -26,20 +26,20 @@ const ImageSelector: React.FC<IProps> = ({ setImages }) => {
     };
 
     const RemoveIcon = (index: number) => {
-        setImages(images.splice(index, 1));
+        setImages(previewImages.splice(index, 1));
     };
 
     return (
         <Container>
-            {images.length < 9 ? (
+            {previewImages.length < 9 ? (
                 <ListContainer>
                     <UploadButton onChange={handleChangeFile} />
                 </ListContainer>
             ) : (
                 <></>
             )}
-            {images.length ? (
-                images.map((image: string, index: number) => (
+            {previewImages.length ? (
+                previewImages.map((image: string, index: number) => (
                     <ListContainer key={`upload-image-${index.toString()}`}>
                         <CloseIcon
                             size="18px"
