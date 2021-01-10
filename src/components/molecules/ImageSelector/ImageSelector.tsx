@@ -4,12 +4,16 @@ import { Container, Image, ListContainer, CloseIcon } from "./styles";
 
 interface IProps {
     setImages: any;
+    images: File[];
 }
 
-const ImageSelector: React.FC<IProps> = ({ setImages }) => {
+const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
     const [previewImages, setPreviewImages] = useState<string[]>([]);
 
     const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value === "") {
+            return;
+        }
         const reader = new FileReader();
 
         reader.onloadend = () => {
@@ -21,12 +25,18 @@ const ImageSelector: React.FC<IProps> = ({ setImages }) => {
         };
         if (e.target.files?.length) {
             reader.readAsDataURL(e.target.files[0]);
-            setImages(...[e.target.files[0]]);
+            setImages([...images, e.target.files[0]]);
         }
+        e.target.value = "";
     };
 
     const RemoveIcon = (index: number) => {
-        setImages(previewImages.splice(index, 1));
+        setPreviewImages(
+            previewImages
+                .slice(0, index)
+                .concat(previewImages.slice(index + 1, previewImages.length)),
+        );
+        setImages(images.slice(0, index).concat(images.slice(index + 1, images.length)));
     };
 
     return (

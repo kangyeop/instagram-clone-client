@@ -39,4 +39,6 @@ export const CloseIcon = styled(AiFillCloseCircle)`
     position: absolute;
     top: 5px;
     right: 5px;
+
+    cursor: pointer;
 `;
