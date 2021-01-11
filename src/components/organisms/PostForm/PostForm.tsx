@@ -9,7 +9,7 @@ interface IProps {
     onClick: () => void;
     canClick: boolean;
     setImages: any;
-    images: File[];
+    images: string[];
 }
 
 const PostForm: React.FC<IProps> = ({ onChange, onClick, canClick, setImages, images }) => {
