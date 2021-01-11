@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { UploadButton, Indicator } from "components/atoms";
 import { IImgurData } from "types/types";
 import useAxios from "axios-hooks";
