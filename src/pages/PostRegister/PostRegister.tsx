@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { PostForm } from "components/organisms";
 import useAxios from "axios-hooks";
+import { IImgurData } from "types/types";
 import { StandardTemplate } from "components/templates";
 import { Container } from "./styles";
 
 const PostRegister: React.FC = () => {
-    const [images, setImages] = useState<string[]>([]);
+    const [images, setImages] = useState<IImgurData[]>([]);
     const [canClick, setCanClick] = useState<boolean>(false);
     const [content, setContent] = useState<string>("");
 

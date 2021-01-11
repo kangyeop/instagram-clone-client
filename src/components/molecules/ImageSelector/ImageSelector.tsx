@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UploadButton, Indicator } from "components/atoms";
+import { IImgurData } from "types/types";
 import useAxios from "axios-hooks";
 import { Container, UploadContainer, Image, ListContainer, CloseIcon } from "./styles";
 
 interface IProps {
     setImages: any;
-    images: string[];
+    images: IImgurData[];
 }
 
 const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
@@ -23,19 +24,32 @@ const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
         { manual: true },
     );
 
+    const [, deleteImage] = useAxios(
+        {
+            headers: {
+                Authorization: `Client-ID ${process.env.REACT_APP_IMGUR_CLIENT_ID}`,
+            },
+            method: "post",
+        },
+        { manual: true },
+    );
+
     const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === "") {
             return;
         }
         const reader = new FileReader();
 
+        let fileBase64 = "";
+
         reader.onloadend = () => {
             const base64 = reader.result;
 
             if (base64) {
-                setPreviewImages([...previewImages, base64.toString()]);
+                fileBase64 = base64.toString();
             }
         };
+
         if (e.target.files?.length) {
             reader.readAsDataURL(e.target.files[0]);
 
@@ -46,27 +60,46 @@ const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
 
             setLoading(1);
 
-            const {
-                data: {
-                    data: { deletehash, link },
-                },
-            } = await sendImage({ data: formData });
+            try {
+                const {
+                    data: {
+                        data: { deletehash, link },
+                    },
+                } = await sendImage({ data: formData });
 
-            setImages([...images, link]);
+                const imgurData = {
+                    deletehash,
+                    link,
+                };
 
+                setImages([...images, imgurData]);
+                setPreviewImages([...previewImages, fileBase64]);
+            } catch {
+                alert("이미지 업로드 중 오류가 발생하였습니다.");
+            }
             setLoading(0);
         }
 
         e.target.value = "";
     };
 
-    const RemoveIcon = (index: number) => {
-        setPreviewImages(
-            previewImages
-                .slice(0, index)
-                .concat(previewImages.slice(index + 1, previewImages.length)),
-        );
-        setImages(images.slice(0, index).concat(images.slice(index + 1, images.length)));
+    const removeIcon = async (index: number) => {
+        setLoading(1);
+        try {
+            await deleteImage({
+                url: process.env.REACT_APP_IMGUR_URL + images[index].deletehash,
+            });
+
+            setPreviewImages(
+                previewImages
+                    .slice(0, index)
+                    .concat(previewImages.slice(index + 1, previewImages.length)),
+            );
+            setImages(images.slice(0, index).concat(images.slice(index + 1, images.length)));
+        } catch {
+            alert("이미지 삭제에 실패하였습니다.");
+        }
+        setLoading(0);
     };
 
     return (
@@ -88,7 +121,7 @@ const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
                                 <CloseIcon
                                     size="18px"
                                     onClick={() => {
-                                        RemoveIcon(index);
+                                        removeIcon(index);
                                     }}
                                 />
                                 <Image src={image} alt="Upload Image" />

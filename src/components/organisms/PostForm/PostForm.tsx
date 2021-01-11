@@ -1,4 +1,5 @@
 import React from "react";
+import { IImgurData } from "types/types";
 import { BorderCard, TextInput, SubmitButton } from "components/atoms";
 import { ImageSelector, PostHeader } from "components/molecules";
 import { ImageContainer, ContentContainer, SubmitContainer } from "./styles";
@@ -9,7 +10,7 @@ interface IProps {
     onClick: () => void;
     canClick: boolean;
     setImages: any;
-    images: string[];
+    images: IImgurData[];
 }
 
 const PostForm: React.FC<IProps> = ({ onChange, onClick, canClick, setImages, images }) => {
