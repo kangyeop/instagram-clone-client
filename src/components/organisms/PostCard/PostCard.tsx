@@ -23,6 +23,7 @@ interface IProps {
     images: string[];
     isLike: boolean;
     canClick: boolean;
+    content: string;
     // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleClickLike: () => void;
@@ -34,6 +35,7 @@ const PostCard: React.FC<IProps> = ({
     images,
     isLike,
     canClick,
+    content,
     onChange,
     handleClickLike,
     handleCommentClick,
@@ -57,9 +59,9 @@ const PostCard: React.FC<IProps> = ({
                 <ImageSlider width="598px" height="598px" images={images} />
             </ImageContainer>
             <RightContainer>
-                <PostHeader height="72px" />
+                <PostHeader height="72px" moreOnClick={() => {}} />
                 <ContentContainer>
-                    <PostContent />
+                    <PostContent content={content} />
                     <CircleContainer onClick={handleMoreComment}>
                         <BsPlusCircle size="24px" />
                     </CircleContainer>
