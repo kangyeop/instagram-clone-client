@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { BsPlusCircle } from "react-icons/bs";
 
 export const ImageContainer = styled.div`
     display: flex;

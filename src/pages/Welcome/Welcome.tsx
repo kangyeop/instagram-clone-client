@@ -4,19 +4,19 @@ import { StandardTemplate } from "components/templates";
 // import { Container } from "./styles";
 
 const Welcome: React.FC = () => {
-    const [{ data, loading, error }] = useAxios("/users?page=2");
+    // const [{ data, loading, error }] = useAxios("/users?page=2");
 
-    if (loading) {
-        return <p>Loading...</p>;
-    }
+    // if (loading) {
+    //     return <p>Loading...</p>;
+    // }
 
-    if (error) {
-        return <p>Error!!!</p>;
-    }
+    // if (error) {
+    //     return <p>Error!!!</p>;
+    // }
 
     return (
         <StandardTemplate>
-            <div className="App" />
+            <div />
         </StandardTemplate>
     );
 };

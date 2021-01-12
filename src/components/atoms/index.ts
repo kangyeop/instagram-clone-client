@@ -8,6 +8,7 @@ import UploadButton from "./UploadButton";
 import CommentInput from "./CommentInput";
 import TimeText from "./TimeText";
 import ReComment from "./ReComment";
+import Indicator from "./Indicator";
 
 export {
     SVGImage,
@@ -20,4 +21,5 @@ export {
     CommentInput,
     TimeText,
     ReComment,
+    Indicator,
 };

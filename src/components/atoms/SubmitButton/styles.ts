@@ -5,6 +5,8 @@ interface IButton {
 }
 
 export const Button = styled.button<IButton>`
+    cursor: pointer;
+
     outline: 0;
 
     border: 0;
