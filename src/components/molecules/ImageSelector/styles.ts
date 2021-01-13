@@ -1,13 +1,26 @@
 import styled from "styled-components";
 import { AiFillCloseCircle } from "react-icons/ai";
 
-export const Container = styled.div`
+interface IContainer {
+    loading: number;
+}
+
+export const Container = styled.div<IContainer>`
     width: 600px;
-    height: 200px;
+    height: ${({ loading }) => (loading ? "600px" : "200px")};
 
     padding: 0;
 
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const UploadContainer = styled.div`
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
 
     display: flex;
     justify-content: flex-start;
@@ -39,4 +52,6 @@ export const CloseIcon = styled(AiFillCloseCircle)`
     position: absolute;
     top: 5px;
     right: 5px;
+
+    cursor: pointer;
 `;

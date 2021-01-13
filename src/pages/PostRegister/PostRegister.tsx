@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { PostForm } from "components/organisms";
+import useAxios from "axios-hooks";
+import { IImgurData } from "types/types";
 import { StandardTemplate } from "components/templates";
 import { Container } from "./styles";
 
 const PostRegister: React.FC = () => {
-    const [images, setImages] = useState<File[]>([]);
+    const [images, setImages] = useState<IImgurData[]>([]);
     const [canClick, setCanClick] = useState<boolean>(false);
     const [content, setContent] = useState<string>("");
+
+    const [, submitContent] = useAxios(
+        { url: "/api/v1/articles", method: "post" },
+        { manual: true },
+    );
 
     const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setContent(e.target.value);
     };
 
-    const onClick = () => {
-        // console.log(e.target.value);
+    const onClick = async () => {
+        const imageUrls = images.map((imgurData) => {
+            return imgurData.link;
+        });
+        const res = await submitContent({ data: { content, imageUrls } });
+        console.log(res);
     };
 
     useEffect(() => {
@@ -27,6 +38,7 @@ const PostRegister: React.FC = () => {
                 <PostForm
                     onChange={onChange}
                     onClick={onClick}
+                    images={images}
                     setImages={setImages}
                     canClick={canClick}
                 />
