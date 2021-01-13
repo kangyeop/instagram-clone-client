@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import { Slider, Image, SliderContent, ArrowContainer } from "./styles";
 
 interface IProps {
@@ -38,12 +38,20 @@ const ImageSlider: React.FC<IProps> = ({ images, height, width }) => {
         <Slider width={width} height={height}>
             {activeIndex ? (
                 <ArrowContainer direction="left" onClick={prevSlide}>
-                    <IoIosArrowDropleft size="30px" color="#8e8e8e" />
+                    <FaChevronCircleLeft
+                        size="30px"
+                        color="#ffffff"
+                        style={{ opacity: 0.5 }}
+                    />
                 </ArrowContainer>
             ) : null}
             {activeIndex !== images.length - 1 ? (
                 <ArrowContainer direction="right" onClick={nextSlide}>
-                    <IoIosArrowDropright size="30px" color="#8e8e8e" />
+                    <FaChevronCircleRight
+                        size="30px"
+                        color="#ffffff"
+                        style={{ opacity: 0.5 }}
+                    />
                 </ArrowContainer>
             ) : null}
 

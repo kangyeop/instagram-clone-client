@@ -8,6 +8,7 @@ import CommentIcon from "./CommentIcon";
 import CommentForm from "./CommentForm";
 import LikeString from "./LikeString";
 import Comment from "./Comment";
+import MoreBox from "./MoreBox";
 
 export {
     HeaderRight,
@@ -20,4 +21,5 @@ export {
     CommentForm,
     LikeString,
     Comment,
+    MoreBox,
 };
