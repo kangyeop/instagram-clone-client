@@ -13,7 +13,9 @@ interface IProps {
 const BlueBtn: React.FC<IProps> = ({ style, width, height, fn, children, link }) => {
     return (
         <BBtn style={style} width={width} height={height} onClick={(e) => fn(e)}>
-            <Link to={link}>{children}</Link>
+            <Link to={link} style={{ textDecoration: "none" }}>
+                {children}
+            </Link>
         </BBtn>
     );
 };
