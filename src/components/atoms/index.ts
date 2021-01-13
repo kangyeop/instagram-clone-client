@@ -10,6 +10,7 @@ import TimeText from "./TimeText";
 import ReComment from "./ReComment";
 import Indicator from "./Indicator";
 import ModalContainer from "./ModalContainer";
+import MoreList from "./MoreList";
 
 export {
     SVGImage,
@@ -24,4 +25,5 @@ export {
     ReComment,
     Indicator,
     ModalContainer,
+    MoreList,
 };

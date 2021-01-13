@@ -1,6 +1,5 @@
-import React, { createRef } from "react";
-import { BsPlusCircle } from "react-icons/bs";
-import { BorderCard } from "components/atoms";
+import React, { createRef, useState } from "react";
+import { BorderCard, ModalContainer, MoreList } from "components/atoms";
 import {
     ImageSlider,
     PostHeader,
@@ -8,7 +7,7 @@ import {
     CommentIcon,
     CommentForm,
     LikeString,
-    Comment,
+    MoreBox,
 } from "components/molecules";
 import {
     ImageContainer,
@@ -16,7 +15,6 @@ import {
     CommentFormContainer,
     IconContainer,
     RightContainer,
-    CircleContainer,
 } from "./styles";
 
 interface IProps {
@@ -26,7 +24,6 @@ interface IProps {
     // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleClickLike: () => void;
-    moreOnClick: () => void;
 }
 
 const FeedPostCard: React.FC<IProps> = ({
@@ -35,8 +32,8 @@ const FeedPostCard: React.FC<IProps> = ({
     canClick,
     onChange,
     handleClickLike,
-    moreOnClick,
 }) => {
+    const [isShow, setIsShow] = useState<boolean>(false);
     const inputRef = createRef<HTMLInputElement>();
 
     const content = `TIEB 소프트터치 터틀넥 가디건의 마지막 3차 (입고 소식을 전합니다.
@@ -50,35 +47,44 @@ const FeedPostCard: React.FC<IProps> = ({
 
     const handleCommentClick = () => {};
 
-    return (
-        <BorderCard style={{ flexDirection: "column", marginBottom: "60px" }}>
-            <PostHeader height="72px" moreOnClick={moreOnClick} />
-            <ImageContainer>
-                <ImageSlider width="614px" height="614px" images={images} />
-            </ImageContainer>
-            <RightContainer>
-                <IconContainer>
-                    <CommentIcon
-                        isLike={isLike}
-                        handleClickComment={handleClickComment}
-                        handleClickLike={handleClickLike}
-                    />
-                    <LikeString isFeed />
-                </IconContainer>
-                <ContentContainer>
-                    <PostContent content={content} isFeed />
-                </ContentContainer>
+    const moreOnClick = () => {
+        setIsShow(true);
+    };
 
-                <CommentFormContainer>
-                    <CommentForm
-                        ref={inputRef}
-                        onChange={(e) => onChange(e)}
-                        onClick={handleCommentClick}
-                        canClick={canClick}
-                    />
-                </CommentFormContainer>
-            </RightContainer>
-        </BorderCard>
+    return (
+        <>
+            <ModalContainer isShow={isShow} setIsShow={setIsShow}>
+                <MoreBox />
+            </ModalContainer>
+            <BorderCard style={{ flexDirection: "column", marginBottom: "60px" }}>
+                <PostHeader height="72px" moreOnClick={moreOnClick} />
+                <ImageContainer>
+                    <ImageSlider width="614px" height="614px" images={images} />
+                </ImageContainer>
+                <RightContainer>
+                    <IconContainer>
+                        <CommentIcon
+                            isLike={isLike}
+                            handleClickComment={handleClickComment}
+                            handleClickLike={handleClickLike}
+                        />
+                        <LikeString isFeed />
+                    </IconContainer>
+                    <ContentContainer>
+                        <PostContent content={content} isFeed />
+                    </ContentContainer>
+
+                    <CommentFormContainer>
+                        <CommentForm
+                            ref={inputRef}
+                            onChange={(e) => onChange(e)}
+                            onClick={handleCommentClick}
+                            canClick={canClick}
+                        />
+                    </CommentFormContainer>
+                </RightContainer>
+            </BorderCard>
+        </>
     );
 };
 

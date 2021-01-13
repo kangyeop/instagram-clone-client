@@ -24,10 +24,6 @@ const Welcome: React.FC = () => {
         setIsLike(!isLike);
     };
 
-    const moreOnClick = () => {
-        setIsShow(true);
-    };
-
     useEffect(() => {
         if (comment) setCanClick(true);
         else setCanClick(false);
@@ -40,7 +36,6 @@ const Welcome: React.FC = () => {
                     images={images}
                     isLike={isLike}
                     canClick={canClick}
-                    moreOnClick={moreOnClick}
                     handleClickLike={handleClickLike}
                     onChange={(e) => onChange(e)}
                 />
@@ -48,7 +43,6 @@ const Welcome: React.FC = () => {
                     images={images}
                     isLike={isLike}
                     canClick={canClick}
-                    moreOnClick={moreOnClick}
                     handleClickLike={handleClickLike}
                     onChange={(e) => onChange(e)}
                 />

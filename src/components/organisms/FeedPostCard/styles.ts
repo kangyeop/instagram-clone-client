@@ -38,16 +38,6 @@ export const ContentContainer = styled.div`
     }
 `;
 
-export const CircleContainer = styled.div`
-    padding: 12px 0px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-`;
-
 export const IconContainer = styled.div`
     display: flex;
     flex-direction: column;
