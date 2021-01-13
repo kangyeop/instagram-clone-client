@@ -11,7 +11,7 @@ export const Box = styled.div<IGrayBox>`
     margin: 0 0 10px;
     align-content: center;
     padding: 10px 0;
-    display: flex;
+    display: block;
     box-align: center;
     background-color: #fff;
     width: ${({ width }) => width};
