@@ -27,8 +27,6 @@ interface IProps {
     // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleClickLike: () => void;
-    handleCommentClick: () => void;
-    handleMoreComment: () => void;
 }
 
 const PostCard: React.FC<IProps> = ({
@@ -38,8 +36,6 @@ const PostCard: React.FC<IProps> = ({
     content,
     onChange,
     handleClickLike,
-    handleCommentClick,
-    handleMoreComment,
 }) => {
     const inputRef = createRef<HTMLInputElement>();
 
@@ -52,6 +48,9 @@ const PostCard: React.FC<IProps> = ({
     };
 
     const handleClickCommentLike = (index: number) => {};
+
+    const handleMoreComment = () => {};
+    const handleCommentClick = () => {};
 
     return (
         <BorderCard>

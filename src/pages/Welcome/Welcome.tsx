@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { FeedPostCard, PostCard } from "components/organisms";
 import { StandardTemplate } from "components/templates";
 import { ModalContainer } from "components/atoms";
@@ -14,19 +14,18 @@ const Welcome: React.FC = () => {
     const [canClick, setCanClick] = useState<boolean>(false);
     const [isLike, setIsLike] = useState<boolean>(false);
     const [comment, setComment] = useState<string>("");
-    const [isShow, setIsShow] = useState<boolean>(true);
-    const [top, setTop] = useState<number>(0);
+    const [isShow, setIsShow] = useState<boolean>(false);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setComment(e.target.value);
     };
 
-    const handleMoreComment = () => {};
-
-    const handleCommentClick = () => {};
-
     const handleClickLike = () => {
         setIsLike(!isLike);
+    };
+
+    const moreOnClick = () => {
+        setIsShow(true);
     };
 
     useEffect(() => {
@@ -41,18 +40,16 @@ const Welcome: React.FC = () => {
                     images={images}
                     isLike={isLike}
                     canClick={canClick}
+                    moreOnClick={moreOnClick}
                     handleClickLike={handleClickLike}
-                    handleCommentClick={handleCommentClick}
-                    handleMoreComment={handleMoreComment}
                     onChange={(e) => onChange(e)}
                 />
                 <FeedPostCard
                     images={images}
                     isLike={isLike}
                     canClick={canClick}
+                    moreOnClick={moreOnClick}
                     handleClickLike={handleClickLike}
-                    handleCommentClick={handleCommentClick}
-                    handleMoreComment={handleMoreComment}
                     onChange={(e) => onChange(e)}
                 />
             </Container>
@@ -63,8 +60,6 @@ const Welcome: React.FC = () => {
                     isLike={isLike}
                     canClick={canClick}
                     handleClickLike={handleClickLike}
-                    handleCommentClick={handleCommentClick}
-                    handleMoreComment={handleMoreComment}
                     onChange={(e) => onChange(e)}
                 />
             </ModalContainer>

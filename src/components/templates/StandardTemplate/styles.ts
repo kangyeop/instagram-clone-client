@@ -14,6 +14,7 @@ export const Container = styled.div`
 
 export const Body = styled.div`
     width: 935px;
+    max-height: 90vh;
 
     background-color: #fafafa;
     padding-top: 36px;

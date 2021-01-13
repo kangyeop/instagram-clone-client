@@ -26,8 +26,7 @@ interface IProps {
     // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleClickLike: () => void;
-    handleCommentClick: () => void;
-    handleMoreComment: () => void;
+    moreOnClick: () => void;
 }
 
 const FeedPostCard: React.FC<IProps> = ({
@@ -36,8 +35,7 @@ const FeedPostCard: React.FC<IProps> = ({
     canClick,
     onChange,
     handleClickLike,
-    handleCommentClick,
-    handleMoreComment,
+    moreOnClick,
 }) => {
     const inputRef = createRef<HTMLInputElement>();
 
@@ -50,11 +48,11 @@ const FeedPostCard: React.FC<IProps> = ({
         }
     };
 
-    const handleClickCommentLike = (index: number) => {};
+    const handleCommentClick = () => {};
 
     return (
         <BorderCard style={{ flexDirection: "column", marginBottom: "60px" }}>
-            <PostHeader height="72px" moreOnClick={() => {}} />
+            <PostHeader height="72px" moreOnClick={moreOnClick} />
             <ImageContainer>
                 <ImageSlider width="614px" height="614px" images={images} />
             </ImageContainer>

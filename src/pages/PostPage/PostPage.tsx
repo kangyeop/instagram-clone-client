@@ -21,10 +21,6 @@ const PostPage: React.FC = () => {
         setComment(e.target.value);
     };
 
-    const handleMoreComment = () => {};
-
-    const handleCommentClick = () => {};
-
     const handleClickLike = () => {
         setIsLike(!isLike);
     };
@@ -43,8 +39,6 @@ const PostPage: React.FC = () => {
                     canClick={canClick}
                     content={content}
                     handleClickLike={handleClickLike}
-                    handleCommentClick={handleCommentClick}
-                    handleMoreComment={handleMoreComment}
                     onChange={(e) => onChange(e)}
                 />
             </Container>

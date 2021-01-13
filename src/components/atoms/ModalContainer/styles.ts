@@ -14,6 +14,8 @@ export const Background = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    touch-action: none;
 `;
 
 export const Modal = styled.div`
