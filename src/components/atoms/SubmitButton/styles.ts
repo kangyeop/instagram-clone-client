@@ -12,7 +12,7 @@ export const Button = styled.button<IButton>`
     border: 0;
 
     color: #0095f6;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.background};
 
     opacity: ${({ canClick }) => (canClick ? null : 0.3)};
 `;

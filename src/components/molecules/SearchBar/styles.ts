@@ -50,7 +50,7 @@ export const InputBox = styled.input`
 
     ::placeholder {
         font-weight: 300;
-        color: #8e8e8e;
+        color: ${({ theme }) => theme.colors.lightText};
     }
 `;
 
@@ -59,5 +59,5 @@ export const Text = styled.div`
     text-align: center;
     font-size: 14px;
     line-height: 18px;
-    color: #8e8e8e;
+    color: ${({ theme }) => theme.colors.lightText};
 `;

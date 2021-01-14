@@ -6,6 +6,6 @@ interface IText {
 
 export const Text = styled.div<IText>`
     font-size: ${({ size }) => size};
-    color: #8e8e8e;
+    color: ${({ theme }) => theme.colors.lightText};
     font-weight: 400;
 `;

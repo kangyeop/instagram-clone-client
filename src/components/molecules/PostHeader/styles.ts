@@ -17,7 +17,7 @@ export const Container = styled.div<IContainer>`
     align-items: center;
     justify-content: space-between;
 
-    border-bottom: 0.5px solid #efefef;
+    border-bottom: 0.5px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const ProfileContainer = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { Welcome, PostRegister, PostPage } from "pages";
 import { ThemeProvider } from "styled-components";
-import theme from "styles/theme";
+import { theme } from "styles";
 
 const App = () => (
     <ThemeProvider theme={theme}>

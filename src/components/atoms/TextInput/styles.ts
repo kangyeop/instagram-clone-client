@@ -13,6 +13,6 @@ export const TextArea = styled.textarea`
     box-sizing: border-box;
 
     ::placeholder {
-        color: #8e8e8e;
+        color: ${({ theme }) => theme.colors.lightText};
     }
 `;
