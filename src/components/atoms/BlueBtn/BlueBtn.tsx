@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { BBtn } from "./styles";
+import { BBtn, LinkBtn } from "./styles";
 
 interface IProps {
     style?: React.CSSProperties;
@@ -13,9 +12,7 @@ interface IProps {
 const BlueBtn: React.FC<IProps> = ({ style, width, height, fn, children, link }) => {
     return (
         <BBtn style={style} width={width} height={height} onClick={(e) => fn(e)}>
-            <Link to={link} style={{ textDecoration: "none" }}>
-                {children}
-            </Link>
+            <LinkBtn to={link}>{children}</LinkBtn>
         </BBtn>
     );
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 interface IBlueBtn {
     width: string;
@@ -16,4 +17,11 @@ export const BBtn = styled.button<IBlueBtn>`
     z-index: 1;
     display: flex;
     justify-content: center;
+    align-items: baseline;
+`;
+
+export const LinkBtn = styled(Link)`
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 `;
