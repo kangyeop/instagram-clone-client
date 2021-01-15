@@ -8,7 +8,7 @@ interface IText {
 export const NicknameText = styled(Link)<IText>`
     font-size: ${({ size }) => size};
     text-decoration: none;
-    color: #262626;
+    color: ${({ theme }) => theme.colors.boldText};
     font-weight: 600;
 
     :hover {
