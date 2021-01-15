@@ -14,7 +14,7 @@ const PostContent: React.FC<IProps> = ({ isFeed, content }) => {
             <ContentText isFeed={isFeed}>
                 <Nickname text="mong_nyang_cartoon" size="14px" /> {content}
                 <br />
-                <TimeText size="12px" text="1시간 전" />
+                {isFeed ? null : <TimeText size="12px" text="1시간 전" />}
             </ContentText>
         </Container>
     );

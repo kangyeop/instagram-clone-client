@@ -39,7 +39,8 @@ const PostPage: React.FC = () => {
                     canClick={canClick}
                     content={content}
                     handleClickLike={handleClickLike}
-                    onChange={(e) => onChange(e)}
+                    onChange={(e: any) => onChange(e)}
+                    moreOnClick={() => {}}
                 />
             </Container>
         </StandardTemplate>

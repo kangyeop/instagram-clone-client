@@ -9,7 +9,7 @@ export const ImageContainer = styled.div`
     border-right: 1px solid #efefef;
 `;
 
-export const RightContainer = styled.div`
+export const DownContainer = styled.div`
     display: flex;
 
     flex-direction: column;
@@ -55,16 +55,27 @@ export const IconContainer = styled.div`
 `;
 
 export const CommentFormContainer = styled.div`
+    padding: 0px 16px;
     display: flex;
 
     box-sizing: border-box;
 
     margin-top: 1px;
-    padding: 0px 16px;
 
     bottom: 0;
 
     width: 100%;
 
     border-top: 1px solid #efefef;
+`;
+
+export const LightBoldText = styled.div`
+    margin: 4px 0px;
+
+    font-size: 14px;
+    font-weight: 520;
+
+    color: #8e8e8e;
+
+    cursor: pointer;
 `;

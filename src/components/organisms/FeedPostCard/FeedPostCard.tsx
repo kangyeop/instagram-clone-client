@@ -1,5 +1,5 @@
 import React, { createRef, useState } from "react";
-import { BorderCard, ModalContainer, MoreList } from "components/atoms";
+import { BorderCard, ModalContainer, TimeText } from "components/atoms";
 import {
     ImageSlider,
     PostHeader,
@@ -9,12 +9,14 @@ import {
     LikeString,
     MoreBox,
 } from "components/molecules";
+import PostCard from "components/organisms/PostCard";
 import {
     ImageContainer,
     ContentContainer,
     CommentFormContainer,
     IconContainer,
-    RightContainer,
+    DownContainer,
+    LightBoldText,
 } from "./styles";
 
 interface IProps {
@@ -33,6 +35,7 @@ const FeedPostCard: React.FC<IProps> = ({
     onChange,
     handleClickLike,
 }) => {
+    const [moreShow, setMoreShow] = useState<boolean>(false);
     const [isShow, setIsShow] = useState<boolean>(false);
     const inputRef = createRef<HTMLInputElement>();
 
@@ -47,21 +50,28 @@ const FeedPostCard: React.FC<IProps> = ({
 
     const handleCommentClick = () => {};
 
-    const moreOnClick = () => {
-        setIsShow(true);
-    };
-
     return (
         <>
             <ModalContainer isShow={isShow} setIsShow={setIsShow}>
+                <PostCard
+                    moreOnClick={() => setMoreShow(true)}
+                    images={images}
+                    isLike={isLike}
+                    canClick={canClick}
+                    content={content}
+                    onChange={onChange}
+                    handleClickLike={handleClickLike}
+                />
+            </ModalContainer>
+            <ModalContainer isShow={moreShow} setIsShow={setMoreShow}>
                 <MoreBox />
             </ModalContainer>
             <BorderCard style={{ flexDirection: "column", marginBottom: "60px" }}>
-                <PostHeader height="72px" moreOnClick={moreOnClick} />
+                <PostHeader height="72px" moreOnClick={() => setMoreShow(true)} />
                 <ImageContainer>
                     <ImageSlider width="614px" height="614px" images={images} />
                 </ImageContainer>
-                <RightContainer>
+                <DownContainer>
                     <IconContainer>
                         <CommentIcon
                             isLike={isLike}
@@ -72,17 +82,22 @@ const FeedPostCard: React.FC<IProps> = ({
                     </IconContainer>
                     <ContentContainer>
                         <PostContent content={content} isFeed />
+                        <LightBoldText onClick={() => setIsShow(true)}>
+                            댓글 모두보기
+                        </LightBoldText>
+                        <TimeText text="1시간 전" size="12px" />
                     </ContentContainer>
-
                     <CommentFormContainer>
                         <CommentForm
                             ref={inputRef}
-                            onChange={(e) => onChange(e)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange(e)
+                            }
                             onClick={handleCommentClick}
                             canClick={canClick}
                         />
                     </CommentFormContainer>
-                </RightContainer>
+                </DownContainer>
             </BorderCard>
         </>
     );
