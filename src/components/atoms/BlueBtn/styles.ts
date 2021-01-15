@@ -7,10 +7,13 @@ interface IBlueBtn {
 
 export const BBtn = styled.button<IBlueBtn>`
     border: 0px solid black;
-    display: flex;
     width: ${({ width }) => width};
     height: ${({ height }) => height};
-    color: rgba(var(--i1d, 38, 38, 38), 1);
+    color: white;
+    background-color: #fff;
+    text-align: center;
     margin: auto;
     z-index: 1;
+    display: flex;
+    justify-content: center;
 `;
