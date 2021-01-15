@@ -11,6 +11,8 @@ import ReComment from "./ReComment";
 import Indicator from "./Indicator";
 import ModalContainer from "./ModalContainer";
 import MoreList from "./MoreList";
+import GrayBox from "./GrayBox";
+import BlueBtn from "./BlueBtn";
 
 export {
     SVGImage,
@@ -26,4 +28,6 @@ export {
     Indicator,
     ModalContainer,
     MoreList,
+    GrayBox,
+    BlueBtn,
 };
