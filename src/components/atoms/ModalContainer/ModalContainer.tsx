@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Background, Modal } from "./styles";
 
 interface IProps {

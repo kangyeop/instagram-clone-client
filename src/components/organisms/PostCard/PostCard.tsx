@@ -1,6 +1,6 @@
-import React, { createRef } from "react";
+import React, { createRef, useState } from "react";
 import { BsPlusCircle } from "react-icons/bs";
-import { BorderCard } from "components/atoms";
+import { BorderCard, ModalContainer } from "components/atoms";
 import {
     ImageSlider,
     PostHeader,
@@ -9,6 +9,7 @@ import {
     CommentForm,
     LikeString,
     Comment,
+    MoreBox,
 } from "components/molecules";
 import {
     ImageContainer,
@@ -27,6 +28,7 @@ interface IProps {
     // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleClickLike: () => void;
+    moreOnClick: () => void;
 }
 
 const PostCard: React.FC<IProps> = ({
@@ -36,6 +38,7 @@ const PostCard: React.FC<IProps> = ({
     content,
     onChange,
     handleClickLike,
+    moreOnClick,
 }) => {
     const inputRef = createRef<HTMLInputElement>();
 
@@ -58,7 +61,7 @@ const PostCard: React.FC<IProps> = ({
                 <ImageSlider width="598px" height="598px" images={images} />
             </ImageContainer>
             <RightContainer>
-                <PostHeader height="72px" moreOnClick={() => {}} />
+                <PostHeader height="72px" moreOnClick={moreOnClick} />
                 <ContentContainer>
                     <PostContent content={content} />
                     <CircleContainer onClick={handleMoreComment}>

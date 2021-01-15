@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FeedPostCard, PostCard } from "components/organisms";
+import { FeedPostCard } from "components/organisms";
 import { StandardTemplate } from "components/templates";
-import { ModalContainer } from "components/atoms";
 import { Container } from "./styles";
 
 const Welcome: React.FC = () => {
@@ -37,26 +36,16 @@ const Welcome: React.FC = () => {
                     isLike={isLike}
                     canClick={canClick}
                     handleClickLike={handleClickLike}
-                    onChange={(e) => onChange(e)}
+                    onChange={(e: any) => onChange(e)}
                 />
                 <FeedPostCard
                     images={images}
                     isLike={isLike}
                     canClick={canClick}
                     handleClickLike={handleClickLike}
-                    onChange={(e) => onChange(e)}
+                    onChange={(e: any) => onChange(e)}
                 />
             </Container>
-            <ModalContainer isShow={isShow} setIsShow={setIsShow}>
-                <PostCard
-                    content="asdf"
-                    images={images}
-                    isLike={isLike}
-                    canClick={canClick}
-                    handleClickLike={handleClickLike}
-                    onChange={(e) => onChange(e)}
-                />
-            </ModalContainer>
         </StandardTemplate>
     );
 };
