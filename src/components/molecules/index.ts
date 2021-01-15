@@ -1,5 +1,6 @@
 import HeaderRight from "./HeaderRight";
 import SearchBar from "./SearchBar";
+import LoginBox from "./LoginBox";
 import PostHeader from "./PostHeader";
 import ImageSelector from "./ImageSelector";
 import ImageSlider from "./ImageSlider";
@@ -22,4 +23,5 @@ export {
     LikeString,
     Comment,
     MoreBox,
+    LoginBox
 };
