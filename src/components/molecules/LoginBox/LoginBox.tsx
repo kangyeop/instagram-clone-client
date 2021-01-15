@@ -18,14 +18,14 @@ const LoginBox: React.FC = () => {
                 <img src={INSTAGRAM} alt="" width="200px" height="50px" />
             </Container>
             <Container height="70px">
-                <BlueBtn width="200px" height="40px" fn={fun} link={loginURL}>
+                <BlueBtn width="200px" height="40px" fn={fun} link="/loginRequest">
                     <img src={GITHUB} alt="" width="20px" height="20px" />
                     &ensp;GITHUB LOGIN
                 </BlueBtn>
             </Container>
             <Container height="20px">
                 &nbsp;
-                <BlueBtn width="200px" height="40px" fn={fun} link={loginURL}>
+                <BlueBtn width="200px" height="40px" fn={fun} link="/loginRequest">
                     <img src={GOOGLE} alt="" width="25px" height="25px" />
                     &ensp;GOOGLE LOGIN
                 </BlueBtn>
