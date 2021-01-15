@@ -1,6 +1,6 @@
 {
     "parser": "@typescript-eslint/parser",
-    "extends": ["airbnb", "prettier/react", "plugin:prettier/recommended"],
+    "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
     "plugins": ["@typescript-eslint"],
     "parserOptions": {
         "project": "./tsconfig.json"
@@ -13,6 +13,7 @@
         "node": true
     },
     "rules": {
+        "import/no-extraneous-dependencies": ["off"],
         "no-unused-vars": "warn",
         "global-require": "off",
         "no-use-before-define": "off",

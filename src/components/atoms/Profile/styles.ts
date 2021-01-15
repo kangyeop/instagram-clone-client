@@ -8,4 +8,6 @@ export const Image = styled.img<IProfile>`
     border-radius: 50%;
     width: ${({ size }) => size};
     height: ${({ size }) => size};
+    cursor: pointer;
+    display: block;
 `;

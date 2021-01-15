@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FontAwesome } from "components/atoms";
+import { GoSearch } from "react-icons/go";
+import { IoCloseCircle } from "react-icons/io5";
 import { InputBox, Text, Container, TextContainer, InputContainer } from "./styles";
 
 // interface IProps {}
@@ -20,7 +21,7 @@ const SearchBar: React.FC = () => {
         <Container>
             {!isShow ? (
                 <InputContainer>
-                    <FontAwesome code="'\f002'" style={{ marginRight: "6px" }} />
+                    <GoSearch color="#8e8e8e" size="14px" />
                     <InputBox
                         value={value}
                         onBlur={() => {
@@ -30,12 +31,12 @@ const SearchBar: React.FC = () => {
                         placeholder="검색"
                         ref={inputRef}
                     />
-                    <FontAwesome
+                    <IoCloseCircle
                         onClick={() => {
                             setValue("");
                             setIsShow(true);
                         }}
-                        code="'\f057'"
+                        color="#8e8e8e"
                     />
                 </InputContainer>
             ) : (
@@ -43,7 +44,7 @@ const SearchBar: React.FC = () => {
                     onClick={() => {
                         setIsShow(false);
                     }}>
-                    <FontAwesome code="'\f002'" style={{ marginRight: "6px" }} />
+                    <GoSearch color="#8e8e8e" size="14px" style={{ marginRight: "6px" }} />
                     <Text>검색</Text>
                 </TextContainer>
             )}
