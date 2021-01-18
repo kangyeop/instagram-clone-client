@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PostForm } from "components/organisms";
-import useAxios from "axios-hooks";
+import { useAxios } from "api";
 import { IImgurData } from "types/types";
 import { StandardTemplate } from "components/templates";
 import { Container } from "./styles";
@@ -11,7 +11,10 @@ const PostRegister: React.FC = () => {
     const [content, setContent] = useState<string>("");
 
     const [, submitContent] = useAxios(
-        { url: "/api/v1/articles", method: "post" },
+        {
+            url: "/api/v1/articles",
+            method: "post",
+        },
         { manual: true },
     );
 
@@ -23,8 +26,11 @@ const PostRegister: React.FC = () => {
         const imageUrls = images.map((imgurData) => {
             return imgurData.link;
         });
-        const res = await submitContent({ data: { content, imageUrls } });
-        console.log(res);
+        const { status, data } = await submitContent({ data: { content, imageUrls } });
+
+        if (status === 201) {
+            alert("성공하였습니다.");
+        }
     };
 
     useEffect(() => {

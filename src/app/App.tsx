@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { Welcome, PostRegister, PostPage, Login } from "pages";
 import { ThemeProvider } from "styled-components";
 import { theme } from "styles";
-import { LoginRequest } from "api/login";
+import { LoginRequest } from "api";
 
 const App = () => (
     <ThemeProvider theme={theme}>

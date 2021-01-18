@@ -1,13 +1,11 @@
 import React from "react";
 import { GrayBox, BlueBtn } from "components/atoms";
-import * as APIS from "api/login";
 import GITHUB from "assets/images/github.png";
 import GOOGLE from "assets/images/google.png";
 import INSTAGRAM from "assets/images/logo-2x.png";
 import { Container } from "./styles";
 
 const LoginBox: React.FC = () => {
-    const loginURL = APIS.LoginRequest;
     const fun = (e: React.ChangeEvent) => {
         e.preventDefault();
     };
