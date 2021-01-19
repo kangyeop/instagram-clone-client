@@ -1,23 +1,17 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-interface IBlueBtn {
-    width: string;
-    height: string;
-}
-
-export const BBtn = styled.button<IBlueBtn>`
+export const Container = styled.button`
     border: 0px solid black;
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    color: white;
+    width: 100%;
+
     background-color: #fff;
-    text-align: center;
-    margin: auto;
-    z-index: 1;
+
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
+
+    margin: 30px 0;
 `;
 
 export const LinkBtn = styled(Link)`
@@ -26,4 +20,12 @@ export const LinkBtn = styled(Link)`
     align-items: center;
 
     color: ${({ theme }) => theme.colors.boldText};
+
+    font-size: 20px;
+    font-weight: 600;
+`;
+
+export const Image = styled.img`
+    height: 30px;
+    width: 30px;
 `;
