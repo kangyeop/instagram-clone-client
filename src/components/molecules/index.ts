@@ -23,5 +23,5 @@ export {
     LikeString,
     Comment,
     MoreBox,
-    LoginBox
+    LoginBox,
 };

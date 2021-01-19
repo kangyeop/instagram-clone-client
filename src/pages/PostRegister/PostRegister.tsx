@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PostForm } from "components/organisms";
-import useAxios from "axios-hooks";
+import { useAxios } from "api/axios";
 import { IImgurData } from "types/types";
 import { StandardTemplate } from "components/templates";
 import { Container } from "./styles";

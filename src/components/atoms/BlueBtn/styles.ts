@@ -24,4 +24,6 @@ export const LinkBtn = styled(Link)`
     text-decoration: none;
     display: flex;
     align-items: center;
+
+    color: ${({ theme }) => theme.colors.boldText};
 `;
