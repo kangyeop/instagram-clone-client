@@ -1,12 +1,12 @@
 import React from "react";
-import { LoginBox } from "components/molecules";
-import { Container } from "./styles";
+import { LoginBox } from "components/organisms";
+import { NormalTemplate } from "components/templates";
 
 const Login: React.FC = () => {
     return (
-        <Container>
+        <NormalTemplate>
             <LoginBox />
-        </Container>
+        </NormalTemplate>
     );
 };
 
