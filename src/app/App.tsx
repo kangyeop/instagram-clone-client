@@ -1,9 +1,10 @@
 import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { Welcome, PostRegister, PostPage, Login } from "pages";
+import { LoginContainer } from "containers";
 import { ThemeProvider } from "styled-components";
 import { theme } from "styles";
-import { LoginRequest } from "api/login";
+import { GithubLoginRequest, GoogleLoginRequest } from "api/login";
 
 const App = () => (
     <ThemeProvider theme={theme}>
@@ -14,12 +15,14 @@ const App = () => (
                 <Route exact path="/PostPage/:id" component={PostPage} />
                 <Route path="/login" component={Login} />
                 <Route
-                    path="/loginRequest"
-                    component={() => {
-                        window.location.href = LoginRequest;
+                    path="/loginRequest/:site"
+                    component={(site: string) => {
+                        window.location.href =
+                            site === "github" ? GithubLoginRequest : GoogleLoginRequest;
                         return null;
                     }}
                 />
+                <Route path="/loginLoading" component={LoginContainer} />
                 {/* <Route
                     exact
                     path="/NotFound"
