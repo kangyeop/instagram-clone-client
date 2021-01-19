@@ -1,6 +1,6 @@
 import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
-import { Welcome, PostRegister, PostPage, Login } from "pages";
+import { Switch, Route, BrowserRouter, RouteComponentProps } from "react-router-dom";
+import { Welcome, PostRegister, PostPage, Login, SignUp } from "pages";
 import { LoginContainer } from "containers";
 import { ThemeProvider } from "styled-components";
 import { theme } from "styles";
@@ -16,13 +16,18 @@ const App = () => (
                 <Route path="/login" component={Login} />
                 <Route
                     path="/loginRequest/:site"
-                    component={(site: string) => {
+                    component={({
+                        match: {
+                            params: { site },
+                        },
+                    }: RouteComponentProps<any>) => {
                         window.location.href =
-                            site === "github" ? GithubLoginRequest : GoogleLoginRequest;
+                            site === "Github" ? GithubLoginRequest : GoogleLoginRequest;
                         return null;
                     }}
                 />
                 <Route path="/loginLoading" component={LoginContainer} />
+                <Route path="/signup" component={SignUp} />
                 {/* <Route
                     exact
                     path="/NotFound"
