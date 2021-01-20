@@ -4,7 +4,7 @@ import { Welcome, PostRegister, PostPage, Login, SignUp } from "pages";
 import { LoginContainer } from "containers";
 import { ThemeProvider } from "styled-components";
 import { theme } from "styles";
-import { GithubLoginRequest, GoogleLoginRequest } from "api/login";
+import { GithubLoginRequest, GoogleLoginRequest } from "api/url";
 import { useSelector } from "react-redux";
 import { RootState } from "store/rootReducer";
 import RouteIf from "./RouteIf";
