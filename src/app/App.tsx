@@ -1,6 +1,6 @@
 import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
-import { Welcome, PostRegister, PostPage, Login } from "pages";
+import { Switch, Route, BrowserRouter, RouteComponentProps } from "react-router-dom";
+import { Welcome, PostRegister, PostPage, Login, SignUp } from "pages";
 import { LoginContainer } from "containers";
 import { ThemeProvider } from "styled-components";
 import { theme } from "styles";
@@ -44,12 +44,16 @@ const App: React.FC = () => {
                         to="/"
                     />
                     <Route
-                        path="/loginRequest/:site"
-                        component={(site: string) => {
-                            window.location.href =
-                                site === "github" ? GithubLoginRequest : GoogleLoginRequest;
-                            return null;
-                        }}
+                      path="/loginRequest/:site"
+                      component={({
+                        match: {
+                            params: { site },
+                        },
+                      }: RouteComponentProps<any>) => {
+                        window.location.href =
+                            site === "Github" ? GithubLoginRequest : GoogleLoginRequest;
+                        return null;
+                      }}
                     />
                     <RouteIf
                         isLoggedIn={!isLoggedIn}

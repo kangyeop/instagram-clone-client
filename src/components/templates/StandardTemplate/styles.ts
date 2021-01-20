@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 100%;
     height: 100%;
-    background-color: #fafafa;
+    background-color: ${({ theme }) => theme.colors.grayBackground};
 
     display: flex;
     flex-direction: column;
@@ -16,6 +16,6 @@ export const Body = styled.div`
     width: 935px;
     max-height: 90vh;
 
-    background-color: #fafafa;
+    background-color: ${({ theme }) => theme.colors.grayBackground};
     padding-top: 36px;
 `;

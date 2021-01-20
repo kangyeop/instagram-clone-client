@@ -1,13 +1,13 @@
 import React from "react";
-import { LoginBox } from "components/organisms";
+import { SignUpBox } from "components/organisms";
 import { NormalTemplate } from "components/templates";
 
-const Login: React.FC = () => {
+const SignUp: React.FC = () => {
     return (
         <NormalTemplate>
-            <LoginBox />
+            <SignUpBox />
         </NormalTemplate>
     );
 };
 
-export default Login;
+export default SignUp;

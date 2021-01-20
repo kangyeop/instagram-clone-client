@@ -11,8 +11,9 @@ import ReComment from "./ReComment";
 import Indicator from "./Indicator";
 import ModalContainer from "./ModalContainer";
 import MoreList from "./MoreList";
-import GrayBox from "./GrayBox";
-import BlueBtn from "./BlueBtn";
+import LoginLink from "./LoginLink";
+import SignUpInputBox from "./SignUpInputBox";
+import SignUpButton from "./SignUpButton";
 
 export {
     SVGImage,
@@ -28,6 +29,7 @@ export {
     Indicator,
     ModalContainer,
     MoreList,
-    GrayBox,
-    BlueBtn,
+    LoginLink,
+    SignUpInputBox,
+    SignUpButton,
 };
