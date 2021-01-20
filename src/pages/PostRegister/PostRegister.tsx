@@ -11,10 +11,7 @@ const PostRegister: React.FC = () => {
     const [content, setContent] = useState<string>("");
 
     const [, submitContent] = useAxios(
-        {
-            url: "articles",
-            method: "post",
-        },
+        { url: "articles", method: "post" },
         { manual: true },
     );
 

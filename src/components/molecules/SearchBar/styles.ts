@@ -4,7 +4,7 @@ export const Container = styled.div`
     width: 215px;
     height: 28px;
 
-    background-color: #fafafa;
+    background-color: ${({ theme }) => theme.colors.grayBackground};
 
     border: solid 1px #dbdbdb;
     border-radius: 3px;
@@ -36,7 +36,7 @@ export const TextContainer = styled.div`
 `;
 
 export const InputBox = styled.input`
-    background-color: #fafafa;
+    background-color: ${({ theme }) => theme.colors.grayBackground};
     width: 77%;
 
     border: 0;

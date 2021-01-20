@@ -6,6 +6,7 @@ const theme: DefaultTheme = {
         border: "#efefef",
         lightText: "#8e8e8e",
         boldText: "#262626",
+        grayBackground: "#fafafa",
     },
 };
 
