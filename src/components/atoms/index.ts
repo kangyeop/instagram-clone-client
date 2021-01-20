@@ -13,6 +13,7 @@ import ModalContainer from "./ModalContainer";
 import MoreList from "./MoreList";
 import LoginLink from "./LoginLink";
 import SignUpInputBox from "./SignUpInputBox";
+import SignUpButton from "./SignUpButton";
 
 export {
     SVGImage,
@@ -30,4 +31,5 @@ export {
     MoreList,
     LoginLink,
     SignUpInputBox,
+    SignUpButton,
 };

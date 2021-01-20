@@ -8,6 +8,8 @@ const LoginContainer: React.FC = () => {
     const dispatch = useDispatch();
 
     const history = useHistory();
+    console.log(history);
+
     const params = new URLSearchParams(history.location.search);
     const accessToken = params.get("accessToken");
 
@@ -15,6 +17,8 @@ const LoginContainer: React.FC = () => {
         if (accessToken) {
             dispatch(setToken({ accessToken }));
             history.push("/");
+        } else {
+            history.push("/signup");
         }
     }, []);
 

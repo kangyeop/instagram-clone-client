@@ -46,6 +46,7 @@ export const PlaceHolder = styled.span<IAnimate>`
 
 export const InputBox = styled.input<IAnimate>`
     width: 90%;
+    height: ${({ isClick }) => (isClick ? null : "80%")};
 
     background-color: ${({ theme }) => theme.colors.grayBackground};
 
