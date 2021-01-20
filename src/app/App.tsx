@@ -44,22 +44,29 @@ const App: React.FC = () => {
                         to="/"
                     />
                     <Route
-                      path="/loginRequest/:site"
-                      component={({
-                        match: {
-                            params: { site },
-                        },
-                      }: RouteComponentProps<any>) => {
-                        window.location.href =
-                            site === "Github" ? GithubLoginRequest : GoogleLoginRequest;
-                        return null;
-                      }}
+                        path="/loginRequest/:site"
+                        component={({
+                            match: {
+                                params: { site },
+                            },
+                        }: RouteComponentProps<any>) => {
+                            window.location.href =
+                                site === "Github" ? GithubLoginRequest : GoogleLoginRequest;
+                            return null;
+                        }}
                     />
                     <RouteIf
                         isLoggedIn={!isLoggedIn}
                         exact
                         path="/loginLoading"
                         component={LoginContainer}
+                        to="/"
+                    />
+                    <RouteIf
+                        isLoggedIn={!isLoggedIn}
+                        exact
+                        path="/signup"
+                        component={SignUp}
                         to="/"
                     />
                     {/* <Route
