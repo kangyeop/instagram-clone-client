@@ -12,7 +12,7 @@ const PostRegister: React.FC = () => {
 
     const [, submitContent] = useAxios(
         {
-            url: "/api/v1/articles",
+            url: "articles",
             method: "post",
         },
         { manual: true },
@@ -31,6 +31,7 @@ const PostRegister: React.FC = () => {
         if (status === 201) {
             alert("성공하였습니다.");
         }
+        console.log(data);
     };
 
     useEffect(() => {
