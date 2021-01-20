@@ -5,30 +5,64 @@ import { LoginContainer } from "containers";
 import { ThemeProvider } from "styled-components";
 import { theme } from "styles";
 import { GithubLoginRequest, GoogleLoginRequest } from "api/login";
+import { useSelector } from "react-redux";
+import { RootState } from "store/rootReducer";
+import RouteIf from "./RouteIf";
 
-const App = () => (
-    <ThemeProvider theme={theme}>
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={Welcome} />
-                <Route exact path="/PostRegister" component={PostRegister} />
-                <Route exact path="/PostPage/:id" component={PostPage} />
-                <Route path="/login" component={Login} />
-                <Route
-                    path="/loginRequest/:site"
-                    component={({
+const App: React.FC = () => {
+    const isLoggedIn = useSelector((state: RootState) => state.authReducer.isLogin);
+    return (
+        <ThemeProvider theme={theme}>
+            <BrowserRouter>
+                <Switch>
+                    <RouteIf
+                        isLoggedIn={isLoggedIn}
+                        exact
+                        path="/"
+                        component={Welcome}
+                        to="/login"
+                    />
+                    <RouteIf
+                        isLoggedIn={isLoggedIn}
+                        exact
+                        path="/PostRegister"
+                        component={PostRegister}
+                        to="/login"
+                    />
+                    <RouteIf
+                        isLoggedIn={isLoggedIn}
+                        exact
+                        path="/PostPage/:id"
+                        component={PostPage}
+                        to="/login"
+                    />
+                    <RouteIf
+                        isLoggedIn={!isLoggedIn}
+                        exact
+                        path="/login"
+                        component={Login}
+                        to="/"
+                    />
+                    <Route
+                      path="/loginRequest/:site"
+                      component={({
                         match: {
                             params: { site },
                         },
-                    }: RouteComponentProps<any>) => {
+                      }: RouteComponentProps<any>) => {
                         window.location.href =
                             site === "Github" ? GithubLoginRequest : GoogleLoginRequest;
                         return null;
-                    }}
-                />
-                <Route path="/loginLoading" component={LoginContainer} />
-                <Route path="/signup" component={SignUp} />
-                {/* <Route
+                      }}
+                    />
+                    <RouteIf
+                        isLoggedIn={!isLoggedIn}
+                        exact
+                        path="/loginLoading"
+                        component={LoginContainer}
+                        to="/"
+                    />
+                    {/* <Route
                     exact
                     path="/NotFound"
                     render={(props: RouteComponentProps<any>) => (
@@ -50,10 +84,11 @@ const App = () => (
                     )}
                 /> */}
 
-                {/* <Redirect to="/NotFound" /> */}
-            </Switch>
-        </BrowserRouter>
-    </ThemeProvider>
-);
+                    {/* <Redirect to="/NotFound" /> */}
+                </Switch>
+            </BrowserRouter>
+        </ThemeProvider>
+    );
+};
 
 export default App;
