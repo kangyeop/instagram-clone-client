@@ -1,6 +1,6 @@
-import React, { createRef, useState } from "react";
+import React, { createRef } from "react";
 import { BsPlusCircle } from "react-icons/bs";
-import { BorderCard, ModalContainer } from "components/atoms";
+import { BorderCard, Indicator } from "components/atoms";
 import {
     ImageSlider,
     PostHeader,
@@ -9,8 +9,8 @@ import {
     CommentForm,
     LikeString,
     Comment,
-    MoreBox,
 } from "components/molecules";
+import { theme } from "styles";
 import {
     ImageContainer,
     ContentContainer,
@@ -25,6 +25,7 @@ interface IProps {
     isLike: boolean;
     canClick: boolean;
     content: string;
+    loading: boolean;
     // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleClickLike: () => void;
@@ -36,6 +37,7 @@ const PostCard: React.FC<IProps> = ({
     isLike,
     canClick,
     content,
+    loading,
     onChange,
     handleClickLike,
     moreOnClick,
@@ -55,6 +57,9 @@ const PostCard: React.FC<IProps> = ({
     const handleMoreComment = () => {};
     const handleCommentClick = () => {};
 
+    if (loading) {
+        return <Indicator type="spin" size="80px" color={theme.colors.lightText} />;
+    }
     return (
         <BorderCard>
             <ImageContainer>

@@ -1,8 +1,8 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, RouteComponentProps } from "react-router-dom";
 
 interface IProps {
-    component: React.FC;
+    component: React.ComponentType<RouteComponentProps<any>>;
     path: string;
     exact: boolean;
     to: string;

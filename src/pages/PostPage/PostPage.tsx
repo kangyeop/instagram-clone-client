@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useAxios } from "api";
+import { PostContainer } from "containers";
 import { PostCard } from "components/organisms";
 import { StandardTemplate } from "components/templates";
 import { Container } from "./styles";
@@ -15,18 +15,11 @@ const PostPage: React.FC = () => {
     const [isLike, setIsLike] = useState<boolean>(false);
     const [comment, setComment] = useState<string>("");
 
-    const [{ data, loading, error }] = useAxios({ url: "articles/10" });
-    console.log(error);
-
     const content = `TIEB 소프트터치 터틀넥 가디건의 마지막 3차 (입고 소식을 전합니다.
         \n니트는 제가 가장 깊히 알고 있는 분야이다보니 아무래도 신경이 더욱 쓰이지만, 그만큼 개인적인 애착의 마음도 큽니다. 때문에 이 제품엔 좀처럼 제게 없는 완벽주의적인 집착과 창작에 대한 순수한 기쁨이 모두 담겨 있습니다.`;
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setComment(e.target.value);
-    };
-
-    const handleClickLike = () => {
-        setIsLike(!isLike);
     };
 
     useEffect(() => {
@@ -37,13 +30,9 @@ const PostPage: React.FC = () => {
     return (
         <StandardTemplate>
             <Container>
-                <PostCard
-                    images={images}
-                    isLike={isLike}
+                <PostContainer
                     canClick={canClick}
-                    content={content}
-                    handleClickLike={handleClickLike}
-                    onChange={(e: any) => onChange(e)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
                     moreOnClick={() => {}}
                 />
             </Container>

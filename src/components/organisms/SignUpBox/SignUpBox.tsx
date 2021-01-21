@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from "react";
 import { SignUpInputBox, UploadButton, Indicator, SignUpButton } from "components/atoms";
-import { useAxios, useImageAxios } from "api/axios";
+import { axios, imgurAxios } from "api/axios";
 import { LogoBox } from "components/molecules";
 import { theme } from "styles";
 import { Container, ImageContainer, ButtonContainer, Image } from "./styles";
@@ -14,18 +14,6 @@ const SignUpBox: React.FC = () => {
     const [description, setDescription] = useState<string>("");
     const [profile, setProfile] = useState<string>();
     const [profileUrl, setProfileUrl] = useState<string>("");
-
-    const [, sendImage] = useImageAxios(
-        {
-            method: "post",
-        },
-        { manual: true },
-    );
-
-    const [, signUp] = useAxios(
-        { url: "members/signup", method: "post", withCredentials: true },
-        { manual: true },
-    );
 
     const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === "") {
@@ -58,7 +46,7 @@ const SignUpBox: React.FC = () => {
                     data: {
                         data: { link },
                     },
-                } = await sendImage({ data: formData });
+                } = await imgurAxios({ method: "post", data: formData });
 
                 setProfile(fileBase64);
                 setProfileUrl(link);
@@ -76,7 +64,10 @@ const SignUpBox: React.FC = () => {
         if (!name || !nickName || !profile || !description) {
             return;
         }
-        const res = await signUp({
+        const res = await axios({
+            url: "members/signup",
+            method: "post",
+            withCredentials: true,
             data: { name, nickName, description, profileImageUrl: profileUrl },
         });
         console.log(res);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UploadButton, Indicator } from "components/atoms";
 import { IImgurData } from "types/types";
-import { useImageAxios } from "api";
+import { imgurAxios } from "api";
 import { Container, UploadContainer, Image, ListContainer, CloseIcon } from "./styles";
 
 interface IProps {
@@ -12,13 +12,6 @@ interface IProps {
 const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
     const [previewImages, setPreviewImages] = useState<string[]>([]);
     const [loading, setLoading] = useState<number>(0);
-
-    const [, controlImage] = useImageAxios(
-        {
-            method: "post",
-        },
-        { manual: true },
-    );
 
     const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === "") {
@@ -51,7 +44,7 @@ const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
                     data: {
                         data: { deletehash, link },
                     },
-                } = await controlImage({ data: formData });
+                } = await imgurAxios({ method: "post", data: formData });
 
                 const imgurData = {
                     deletehash,
@@ -72,8 +65,9 @@ const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
     const removeIcon = async (index: number) => {
         setLoading(1);
         try {
-            await controlImage({
-                url: process.env.REACT_APP_IMGUR_URL + images[index].deletehash,
+            await imgurAxios({
+                method: "post",
+                url: images[index].deletehash,
             });
 
             setPreviewImages(
