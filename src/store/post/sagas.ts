@@ -3,7 +3,7 @@ import { axios } from "api";
 import { PostTypes, PostAction } from "./types";
 
 const callPost = async (id: number) => {
-    const res = await axios({ method: "get", url: `articles/${id}` });
+    const res = await axios({ method: "get", url: `api/v1/articles/${id}` });
     return res;
 };
 

@@ -19,7 +19,7 @@ const PostRegister: React.FC = () => {
             return imgurData.link;
         });
         const { status, data } = await axios({
-            url: "articles",
+            url: "api/v1/articles",
             method: "post",
             data: { content, imageUrls },
         });

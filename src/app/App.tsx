@@ -4,7 +4,7 @@ import { Welcome, PostRegister, PostPage, Login, SignUp } from "pages";
 import { LoginContainer } from "containers";
 import { ThemeProvider } from "styled-components";
 import { theme } from "styles";
-import { GithubLoginRequest, GoogleLoginRequest } from "api";
+import { GithubLoginRequest, GoogleLoginRequest, SignUpRequest } from "api";
 import { useSelector } from "react-redux";
 import { RootState } from "store/rootReducer";
 import RouteIf from "./RouteIf";
@@ -52,6 +52,14 @@ const App: React.FC = () => {
                         }: RouteComponentProps<any>) => {
                             window.location.href =
                                 site === "Github" ? GithubLoginRequest : GoogleLoginRequest;
+                            return null;
+                        }}
+                    />
+                    <Route
+                        path="/signUpRequest"
+                        component={({ location: { search } }: RouteComponentProps<any>) => {
+                            window.location.href = SignUpRequest + search;
+
                             return null;
                         }}
                     />
