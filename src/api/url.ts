@@ -1,4 +1,3 @@
-export const GithubLoginRequest =
-    "https://instagram-clone-5erver.herokuapp.com/oauth2/authorization/github?finalRedirectUri=https://instagram-clone-client.herokuapp.com/loginloading";
-export const GoogleLoginRequest =
-    "https://instagram-clone-5erver.herokuapp.com/oauth2/authorization/google?finalRedirectUri=https://instagram-clone-client.herokuapp.com/loginloading";
+export const GithubLoginRequest = `${process.env.REACT_APP_API_URL}oauth2/authorization/github?finalRedirectUri=${process.env.REACT_APP_DOMAIN}/loginloading`;
+export const GoogleLoginRequest = `${process.env.REACT_APP_API_URL}oauth2/authorization/google?finalRedirectUri=${process.env.REACT_APP_DOMAIN}/loginloading`;
+export const SignUpRequest = `${process.env.REACT_APP_API_URL}api/v1/members/signup`;

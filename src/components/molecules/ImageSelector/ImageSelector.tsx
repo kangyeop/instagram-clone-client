@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UploadButton, Indicator } from "components/atoms";
 import { IImgurData } from "types/types";
-import useAxios from "axios-hooks";
+import { imgurAxios } from "api";
 import { Container, UploadContainer, Image, ListContainer, CloseIcon } from "./styles";
 
 interface IProps {
@@ -12,27 +12,6 @@ interface IProps {
 const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
     const [previewImages, setPreviewImages] = useState<string[]>([]);
     const [loading, setLoading] = useState<number>(0);
-
-    const [, sendImage] = useAxios(
-        {
-            url: process.env.REACT_APP_IMGUR_URL,
-            headers: {
-                Authorization: `Client-ID ${process.env.REACT_APP_IMGUR_CLIENT_ID}`,
-            },
-            method: "post",
-        },
-        { manual: true },
-    );
-
-    const [, deleteImage] = useAxios(
-        {
-            headers: {
-                Authorization: `Client-ID ${process.env.REACT_APP_IMGUR_CLIENT_ID}`,
-            },
-            method: "post",
-        },
-        { manual: true },
-    );
 
     const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === "") {
@@ -65,7 +44,7 @@ const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
                     data: {
                         data: { deletehash, link },
                     },
-                } = await sendImage({ data: formData });
+                } = await imgurAxios({ method: "post", data: formData });
 
                 const imgurData = {
                     deletehash,
@@ -86,8 +65,9 @@ const ImageSelector: React.FC<IProps> = ({ setImages, images }) => {
     const removeIcon = async (index: number) => {
         setLoading(1);
         try {
-            await deleteImage({
-                url: process.env.REACT_APP_IMGUR_URL + images[index].deletehash,
+            await imgurAxios({
+                method: "post",
+                url: images[index].deletehash,
             });
 
             setPreviewImages(

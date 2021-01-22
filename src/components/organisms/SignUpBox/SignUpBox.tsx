@@ -1,9 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from "react";
 import { SignUpInputBox, UploadButton, Indicator, SignUpButton } from "components/atoms";
-import { useAxios, useImageAxios } from "api/axios";
+import { imgurAxios } from "api/axios";
 import { LogoBox } from "components/molecules";
 import { theme } from "styles";
+import { useHistory } from "react-router-dom";
 import { Container, ImageContainer, ButtonContainer, Image } from "./styles";
 
 const SignUpBox: React.FC = () => {
@@ -15,17 +16,7 @@ const SignUpBox: React.FC = () => {
     const [profile, setProfile] = useState<string>();
     const [profileUrl, setProfileUrl] = useState<string>("");
 
-    const [, sendImage] = useImageAxios(
-        {
-            method: "post",
-        },
-        { manual: true },
-    );
-
-    const [, signUp] = useAxios(
-        { url: "members/signup", method: "post", withCredentials: true },
-        { manual: true },
-    );
+    const history = useHistory();
 
     const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === "") {
@@ -58,7 +49,7 @@ const SignUpBox: React.FC = () => {
                     data: {
                         data: { link },
                     },
-                } = await sendImage({ data: formData });
+                } = await imgurAxios({ method: "post", data: formData });
 
                 setProfile(fileBase64);
                 setProfileUrl(link);
@@ -76,10 +67,16 @@ const SignUpBox: React.FC = () => {
         if (!name || !nickName || !profile || !description) {
             return;
         }
-        const res = await signUp({
-            data: { name, nickName, description, profileImageUrl: profileUrl },
+
+        const params = new URLSearchParams({
+            name,
+            nickname: nickName,
+            profileImageUrl: profileUrl,
+            description,
+            redirectUri: `${process.env.REACT_APP_DOMAIN}loginloading`,
         });
-        console.log(res);
+
+        history.push({ pathname: "/signUpRequest", search: params.toString() });
     };
 
     useEffect(() => {

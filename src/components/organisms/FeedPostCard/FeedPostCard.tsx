@@ -54,6 +54,7 @@ const FeedPostCard: React.FC<IProps> = ({
         <>
             <ModalContainer isShow={isShow} setIsShow={setIsShow}>
                 <PostCard
+                    loading={false}
                     moreOnClick={() => setMoreShow(true)}
                     images={images}
                     isLike={isLike}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { PostContainer } from "containers";
 import { PostCard } from "components/organisms";
 import { StandardTemplate } from "components/templates";
 import { Container } from "./styles";
@@ -21,10 +22,6 @@ const PostPage: React.FC = () => {
         setComment(e.target.value);
     };
 
-    const handleClickLike = () => {
-        setIsLike(!isLike);
-    };
-
     useEffect(() => {
         if (comment) setCanClick(true);
         else setCanClick(false);
@@ -33,13 +30,9 @@ const PostPage: React.FC = () => {
     return (
         <StandardTemplate>
             <Container>
-                <PostCard
-                    images={images}
-                    isLike={isLike}
+                <PostContainer
                     canClick={canClick}
-                    content={content}
-                    handleClickLike={handleClickLike}
-                    onChange={(e: any) => onChange(e)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
                     moreOnClick={() => {}}
                 />
             </Container>

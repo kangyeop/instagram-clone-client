@@ -1,3 +1,4 @@
 import LoginContainer from "./LoginContainer";
+import PostContainer from "./PostContainer";
 
-export { LoginContainer };
+export { LoginContainer, PostContainer };
