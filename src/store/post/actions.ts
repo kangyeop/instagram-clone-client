@@ -6,6 +6,8 @@ export const successPost = createAction(PostTypes.SUCCESS_POST)<{
     content: string;
     isLiked: boolean;
     imageUrls: string[];
+    profileImageUrl: string;
+    nickname: string;
 }>();
 
 export const requestPost = createAction(PostTypes.REQUEST_POST)<{

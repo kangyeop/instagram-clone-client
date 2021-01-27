@@ -18,6 +18,7 @@ import {
     IconContainer,
     RightContainer,
     CircleContainer,
+    MiddleContainer,
 } from "./styles";
 
 interface IProps {
@@ -25,6 +26,8 @@ interface IProps {
     isLike: boolean;
     canClick: boolean;
     content: string;
+    nickname: string;
+    profileImageUrl: string;
     loading: boolean;
     // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -37,6 +40,8 @@ const PostCard: React.FC<IProps> = ({
     isLike,
     canClick,
     content,
+    nickname,
+    profileImageUrl,
     loading,
     onChange,
     handleClickLike,
@@ -44,7 +49,8 @@ const PostCard: React.FC<IProps> = ({
 }) => {
     const inputRef = createRef<HTMLInputElement>();
 
-    const text = ["asdfasdfasdfafsdasdfasdfasdfasdfasdfadfasdf", "Asdf", "asdf", "asdf"];
+    // const text = ["asdfasdfasdfafsdasdfasdfasdfasdfasdfadfasdf", "Asdf", "asdf", "asdf"];
+    const text: string[] = [];
 
     const handleClickComment = () => {
         if (inputRef.current) {
@@ -58,7 +64,11 @@ const PostCard: React.FC<IProps> = ({
     const handleCommentClick = () => {};
 
     if (loading) {
-        return <Indicator type="spin" size="80px" color={theme.colors.lightText} />;
+        return (
+            <MiddleContainer>
+                <Indicator type="spin" size="80px" color={theme.colors.lightText} />
+            </MiddleContainer>
+        );
     }
     return (
         <BorderCard>
@@ -66,9 +76,18 @@ const PostCard: React.FC<IProps> = ({
                 <ImageSlider width="598px" height="598px" images={images} />
             </ImageContainer>
             <RightContainer>
-                <PostHeader height="72px" moreOnClick={moreOnClick} />
+                <PostHeader
+                    height="72px"
+                    nickname={nickname}
+                    profileImageUrl={profileImageUrl}
+                    moreOnClick={moreOnClick}
+                />
                 <ContentContainer>
-                    <PostContent content={content} />
+                    <PostContent
+                        nickname={nickname}
+                        profileImageUrl={profileImageUrl}
+                        content={content}
+                    />
                     <CircleContainer onClick={handleMoreComment}>
                         <BsPlusCircle size="24px" />
                     </CircleContainer>

@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const MiddleContainer = styled.div`
+    width: 100%;
+    height: 598px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 export const ImageContainer = styled.div`
     display: flex;
 

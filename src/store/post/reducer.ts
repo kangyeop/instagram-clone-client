@@ -6,6 +6,8 @@ const initialState: IPostState = {
     content: "",
     isLiked: false,
     imageUrls: [],
+    profileImageUrl: "",
+    nickname: "",
     loading: true,
     error: undefined,
 };
@@ -17,6 +19,8 @@ const postReducer = createReducer<IPostState, PostAction | FailAction>(initialSt
         content: action.payload.content,
         isLiked: action.payload.isLiked,
         imageUrls: action.payload.imageUrls,
+        profileImageUrl: action.payload.profileImageUrl,
+        nickname: action.payload.nickname,
         loading: false,
     }),
     [PostTypes.FAIL_POST]: (state, action) => ({
@@ -27,6 +31,10 @@ const postReducer = createReducer<IPostState, PostAction | FailAction>(initialSt
         imageUrls: [],
         loading: false,
         error: action.payload.error,
+    }),
+    [PostTypes.REQUEST_POST]: (state) => ({
+        ...state,
+        loading: true,
     }),
 });
 

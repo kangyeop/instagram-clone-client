@@ -1,37 +1,29 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RouteComponentProps, withRouter } from "react-router-dom";
 import { PostCard } from "components/organisms";
 import { requestPost } from "store/post/actions";
 import { RootState } from "store/rootReducer";
 
-interface IMatchProps {
-    id: string;
-}
-
 interface IProps {
+    id: string;
     canClick: boolean;
     // eslint-disable-next-line no-unused-vars
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     moreOnClick: () => void;
 }
 
-const PostContainer: React.FC<IProps & RouteComponentProps<IMatchProps>> = ({
-    canClick,
-    onChange,
-    moreOnClick,
-    match,
-}) => {
+const PostContainer: React.FC<IProps> = ({ canClick, onChange, moreOnClick, id }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestPost({ id: parseFloat(match.params.id) }));
+        dispatch(requestPost({ id: parseFloat(id) }));
     }, []);
 
     const handleClickLike = () => {
         // dispatch like
     };
-    const { id, imageUrls, content, isLiked, loading } = useSelector(
+
+    const { imageUrls, content, isLiked, nickname, profileImageUrl, loading } = useSelector(
         (state: RootState) => state.postReducer,
     );
 
@@ -42,6 +34,8 @@ const PostContainer: React.FC<IProps & RouteComponentProps<IMatchProps>> = ({
             isLike={isLiked}
             content={content}
             canClick={canClick}
+            nickname={nickname}
+            profileImageUrl={profileImageUrl}
             handleClickLike={handleClickLike}
             onChange={onChange}
             moreOnClick={moreOnClick}
@@ -49,4 +43,4 @@ const PostContainer: React.FC<IProps & RouteComponentProps<IMatchProps>> = ({
     );
 };
 
-export default withRouter(PostContainer);
+export default PostContainer;

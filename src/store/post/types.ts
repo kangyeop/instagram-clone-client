@@ -10,6 +10,8 @@ export interface IPostState {
     isLiked: boolean;
     imageUrls: string[];
     loading: boolean;
+    profileImageUrl: string;
+    nickname: string;
     error?: string;
 }
 

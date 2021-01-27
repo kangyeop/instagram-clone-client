@@ -20,7 +20,12 @@ const PostForm: React.FC<IProps> = ({ onChange, onClick, canClick, setImages, im
                 <ImageSelector setImages={setImages} images={images} />
             </ImageContainer>
             <ContentContainer>
-                <PostHeader height="72px" moreOnClick={() => {}} />
+                <PostHeader
+                    height="72px"
+                    nickname=""
+                    profileImageUrl=""
+                    moreOnClick={() => {}}
+                />
                 <TextInput
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                         return onChange(e);

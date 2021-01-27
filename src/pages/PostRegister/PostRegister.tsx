@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PostForm } from "components/organisms";
 import { axios } from "api";
 import { IImgurData } from "types/types";
+import { PostFormContainer } from "containers";
 import { StandardTemplate } from "components/templates";
 import { Container } from "./styles";
 
@@ -38,13 +39,7 @@ const PostRegister: React.FC = () => {
     return (
         <StandardTemplate>
             <Container>
-                <PostForm
-                    onChange={onChange}
-                    onClick={onClick}
-                    images={images}
-                    setImages={setImages}
-                    canClick={canClick}
-                />
+                <PostFormContainer />
             </Container>
         </StandardTemplate>
     );

@@ -10,12 +10,18 @@ const callPost = async (id: number) => {
 function* handleRequestPost(action: PostAction) {
     try {
         const {
-            data: { id, content, isLiked, imageUrls },
+            data: {
+                id,
+                content,
+                isLiked,
+                imageUrls,
+                createdBy: { nickname, profileImageUrl },
+            },
         } = yield call(callPost, action.payload.id);
 
         yield put({
             type: PostTypes.SUCCESS_POST,
-            payload: { id, content, isLiked, imageUrls },
+            payload: { id, content, isLiked, imageUrls, nickname, profileImageUrl },
         });
     } catch (e) {
         yield put({ type: PostTypes.FAIL_POST, payload: { error: e } });
