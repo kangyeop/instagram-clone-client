@@ -24,13 +24,12 @@ import {
 interface IProps {
     images: string[];
     isLike: boolean;
-    canClick: boolean;
     content: string;
     nickname: string;
     profileImageUrl: string;
     loading: boolean;
+    id: number;
     // eslint-disable-next-line no-unused-vars
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleClickLike: () => void;
     moreOnClick: () => void;
 }
@@ -38,12 +37,11 @@ interface IProps {
 const PostCard: React.FC<IProps> = ({
     images,
     isLike,
-    canClick,
     content,
     nickname,
     profileImageUrl,
     loading,
-    onChange,
+    id,
     handleClickLike,
     moreOnClick,
 }) => {
@@ -111,12 +109,7 @@ const PostCard: React.FC<IProps> = ({
                     <LikeString />
                 </IconContainer>
                 <CommentFormContainer>
-                    <CommentForm
-                        ref={inputRef}
-                        onChange={(e) => onChange(e)}
-                        onClick={handleCommentClick}
-                        canClick={canClick}
-                    />
+                    <CommentForm ref={inputRef} id={id} />
                 </CommentFormContainer>
             </RightContainer>
         </BorderCard>

@@ -6,13 +6,9 @@ import { RootState } from "store/rootReducer";
 
 interface IProps {
     id: string;
-    canClick: boolean;
-    // eslint-disable-next-line no-unused-vars
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    moreOnClick: () => void;
 }
 
-const PostContainer: React.FC<IProps> = ({ canClick, onChange, moreOnClick, id }) => {
+const PostContainer: React.FC<IProps> = ({ id }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,21 +19,22 @@ const PostContainer: React.FC<IProps> = ({ canClick, onChange, moreOnClick, id }
         // dispatch like
     };
 
+    const moreOnClick = () => {};
+
     const { imageUrls, content, isLiked, nickname, profileImageUrl, loading } = useSelector(
         (state: RootState) => state.postReducer,
     );
 
     return (
         <PostCard
+            id={parseFloat(id)}
             loading={loading}
             images={imageUrls}
             isLike={isLiked}
             content={content}
-            canClick={canClick}
             nickname={nickname}
             profileImageUrl={profileImageUrl}
             handleClickLike={handleClickLike}
-            onChange={onChange}
             moreOnClick={moreOnClick}
         />
     );

@@ -1,18 +1,37 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import { CommentInput, SubmitButton } from "components/atoms";
+import { axios } from "api";
 import { Container } from "./styles";
 
 interface IProps {
-    canClick: boolean;
-    // eslint-disable-next-line no-unused-vars
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onClick: () => void;
+    id: number;
 }
 
 const CommentForm: React.ForwardRefRenderFunction<HTMLInputElement, IProps> = (
-    { canClick, onChange, onClick },
+    { id },
     ref,
 ) => {
+    const [comment, setComment] = useState<string>("");
+    const [canClick, setCanClick] = useState<boolean>(false);
+
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setComment(e.target.value);
+        if (e.target.value) setCanClick(true);
+        else setCanClick(false);
+    };
+
+    const onClick = async () => {
+        const res = await axios({
+            method: "post",
+            url: `/api/v1/articles/${id}/comments`,
+            data: {
+                content: comment,
+            },
+        });
+
+        console.log(res);
+    };
+
     return (
         <Container>
             <CommentInput

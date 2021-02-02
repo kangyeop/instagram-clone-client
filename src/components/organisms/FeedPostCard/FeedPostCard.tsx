@@ -55,12 +55,18 @@ const FeedPostCard: React.FC<IProps> = ({
     return (
         <>
             <ModalContainer isShow={isShow} setIsShow={setIsShow}>
-                <PostContainer
-                    id={id}
+                {/* <PostCard
+                    id={1}
+                    loading={false}
+                    moreOnClick={() => setMoreShow(true)}
+                    images={images}
+                    isLike={isLike}
                     canClick={canClick}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
-                    moreOnClick={() => {}}
-                />
+                    content={content}
+                    onChange={onChange}
+                    handleClickLike={handleClickLike}
+                /> */}
+                <></>
             </ModalContainer>
             <ModalContainer isShow={moreShow} setIsShow={setMoreShow}>
                 <MoreBox id={id} />
@@ -97,14 +103,7 @@ const FeedPostCard: React.FC<IProps> = ({
                         <TimeText text="1시간 전" size="12px" />
                     </ContentContainer>
                     <CommentFormContainer>
-                        <CommentForm
-                            ref={inputRef}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                onChange(e)
-                            }
-                            onClick={handleCommentClick}
-                            canClick={canClick}
-                        />
+                        <CommentForm ref={inputRef} id={1} />
                     </CommentFormContainer>
                 </DownContainer>
             </BorderCard>
