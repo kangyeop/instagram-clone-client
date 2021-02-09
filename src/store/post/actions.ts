@@ -21,6 +21,10 @@ export const successComment = createAction(PostTypes.SUCCESS_COMMENT)<{
 
 export const requestComment = createAction(PostTypes.REQUEST_COMMENT)<{
     id: number;
+    page: number;
+    size: number;
 }>();
 
 export const failComment = createAction(PostTypes.FAIL_COMMENT)<{ error: string }>();
+
+export const setMore = createAction(PostTypes.SET_MORE)<{ isMore: boolean }>();

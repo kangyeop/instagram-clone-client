@@ -38,7 +38,10 @@ const CommentForm: React.ForwardRefRenderFunction<HTMLInputElement, IProps> = (
 
         if (res.status === 201) {
             successComment();
+            console.log(res.data);
+
             alert("댓글이 정상적으로 등록되었습니다.");
+            setComment("");
         }
     };
 
@@ -49,6 +52,7 @@ const CommentForm: React.ForwardRefRenderFunction<HTMLInputElement, IProps> = (
                 onKeyPress={onKeyUp}
                 onChange={(e) => onChange(e)}
                 placeholder="댓글 달기..."
+                value={comment}
             />
             <SubmitButton canClick={canClick} onClick={onClick}>
                 게시
