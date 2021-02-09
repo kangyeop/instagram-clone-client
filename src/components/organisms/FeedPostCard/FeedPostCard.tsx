@@ -103,7 +103,7 @@ const FeedPostCard: React.FC<IProps> = ({
                         <TimeText text="1시간 전" size="12px" />
                     </ContentContainer>
                     <CommentFormContainer>
-                        <CommentForm ref={inputRef} id={1} />
+                        <CommentForm ref={inputRef} id={1} successComment={() => {}} />
                     </CommentFormContainer>
                 </DownContainer>
             </BorderCard>

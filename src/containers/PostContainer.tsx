@@ -21,9 +21,18 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
 
     const moreOnClick = () => {};
 
-    const { imageUrls, content, isLiked, nickname, profileImageUrl, loading } = useSelector(
-        (state: RootState) => state.postReducer,
-    );
+    const successComment = () => {
+        dispatch(requestPost({ id: parseFloat(id) }));
+    };
+
+    const {
+        imageUrls,
+        content,
+        isLiked,
+        loading,
+        createdBy: { nickname, profileImageUrl },
+        comments,
+    } = useSelector((state: RootState) => state.postReducer);
 
     return (
         <PostCard
@@ -34,8 +43,10 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
             content={content}
             nickname={nickname}
             profileImageUrl={profileImageUrl}
+            comments={comments}
             handleClickLike={handleClickLike}
             moreOnClick={moreOnClick}
+            successComment={successComment}
         />
     );
 };

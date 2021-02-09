@@ -17,6 +17,10 @@ export const ImageContainer = styled.div`
     border-right: 1px solid #efefef;
 `;
 
+export const CommentsContainer = styled.div`
+    margin-top: 10px;
+`;
+
 export const RightContainer = styled.div`
     display: flex;
 

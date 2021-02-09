@@ -5,14 +5,21 @@ import { Container } from "./styles";
 
 interface IProps {
     id: number;
+    successComment: () => void;
 }
 
 const CommentForm: React.ForwardRefRenderFunction<HTMLInputElement, IProps> = (
-    { id },
+    { id, successComment },
     ref,
 ) => {
     const [comment, setComment] = useState<string>("");
     const [canClick, setCanClick] = useState<boolean>(false);
+
+    const onKeyUp = (e: React.KeyboardEvent<Element>) => {
+        if (e.key === "Enter") {
+            onClick();
+        }
+    };
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setComment(e.target.value);
@@ -29,13 +36,17 @@ const CommentForm: React.ForwardRefRenderFunction<HTMLInputElement, IProps> = (
             },
         });
 
-        console.log(res);
+        if (res.status === 201) {
+            successComment();
+            alert("댓글이 정상적으로 등록되었습니다.");
+        }
     };
 
     return (
         <Container>
             <CommentInput
                 ref={ref}
+                onKeyPress={onKeyUp}
                 onChange={(e) => onChange(e)}
                 placeholder="댓글 달기..."
             />

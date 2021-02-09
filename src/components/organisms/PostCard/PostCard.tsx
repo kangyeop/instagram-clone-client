@@ -11,6 +11,7 @@ import {
     Comment,
 } from "components/molecules";
 import { theme } from "styles";
+import { IComment } from "types/types";
 import {
     ImageContainer,
     ContentContainer,
@@ -19,6 +20,7 @@ import {
     RightContainer,
     CircleContainer,
     MiddleContainer,
+    CommentsContainer,
 } from "./styles";
 
 interface IProps {
@@ -29,9 +31,10 @@ interface IProps {
     profileImageUrl: string;
     loading: boolean;
     id: number;
-    // eslint-disable-next-line no-unused-vars
+    comments: IComment[];
     handleClickLike: () => void;
     moreOnClick: () => void;
+    successComment: () => void;
 }
 
 const PostCard: React.FC<IProps> = ({
@@ -42,13 +45,14 @@ const PostCard: React.FC<IProps> = ({
     profileImageUrl,
     loading,
     id,
+    comments,
     handleClickLike,
     moreOnClick,
+    successComment,
 }) => {
     const inputRef = createRef<HTMLInputElement>();
 
     // const text = ["asdfasdfasdfafsdasdfasdfasdfasdfasdfadfasdf", "Asdf", "asdf", "asdf"];
-    const text: string[] = [];
 
     const handleClickComment = () => {
         if (inputRef.current) {
@@ -86,19 +90,21 @@ const PostCard: React.FC<IProps> = ({
                         profileImageUrl={profileImageUrl}
                         content={content}
                     />
-                    <CircleContainer onClick={handleMoreComment}>
+                    {/* <CircleContainer onClick={handleMoreComment}>
                         <BsPlusCircle size="24px" />
-                    </CircleContainer>
-                    {text.map((data, index) => (
-                        <Comment
-                            key={data + String(index)}
-                            text={data}
-                            isLike={false}
-                            handleClickCommentLike={() => {
-                                handleClickCommentLike(index);
-                            }}
-                        />
-                    ))}
+                    </CircleContainer> */}
+                    <CommentsContainer>
+                        {comments.map((data, index) => (
+                            <Comment
+                                key={data + String(index)}
+                                comment={data}
+                                isLike={false}
+                                handleClickCommentLike={() => {
+                                    handleClickCommentLike(index);
+                                }}
+                            />
+                        ))}
+                    </CommentsContainer>
                 </ContentContainer>
                 <IconContainer>
                     <CommentIcon
@@ -109,7 +115,7 @@ const PostCard: React.FC<IProps> = ({
                     <LikeString />
                 </IconContainer>
                 <CommentFormContainer>
-                    <CommentForm ref={inputRef} id={id} />
+                    <CommentForm id={id} ref={inputRef} successComment={successComment} />
                 </CommentFormContainer>
             </RightContainer>
         </BorderCard>

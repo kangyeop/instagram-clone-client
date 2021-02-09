@@ -7,24 +7,34 @@ const callPost = async (id: number) => {
     return res;
 };
 
+const callComment = async (id: number) => {
+    const res = await axios({ method: "get", url: `api/v1/articles/${id}/comments` });
+    return res;
+};
+
 function* handleRequestPost(action: PostAction) {
     try {
-        const {
-            data: {
-                id,
-                content,
-                isLiked,
-                imageUrls,
-                createdBy: { nickname, profileImageUrl },
-            },
-        } = yield call(callPost, action.payload.id);
+        const { data: state } = yield call(callPost, action.payload.id);
 
         yield put({
             type: PostTypes.SUCCESS_POST,
-            payload: { id, content, isLiked, imageUrls, nickname, profileImageUrl },
+            payload: { state },
         });
     } catch (e) {
         yield put({ type: PostTypes.FAIL_POST, payload: { error: e } });
+    }
+
+    try {
+        const {
+            data: { comments },
+        } = yield call(callComment, action.payload.id);
+
+        yield put({
+            type: PostTypes.SUCCESS_COMMENT,
+            payload: { comments },
+        });
+    } catch (e) {
+        yield put({ type: PostTypes.FAIL_COMMENT, payload: { error: e } });
     }
 }
 
