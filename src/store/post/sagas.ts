@@ -1,14 +1,18 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { axios } from "api";
-import { PostTypes, PostAction } from "./types";
+import { PostTypes, PostAction, CommentAction } from "./types";
 
 const callPost = async (id: number) => {
     const res = await axios({ method: "get", url: `api/v1/articles/${id}` });
     return res;
 };
 
-const callComment = async (id: number) => {
-    const res = await axios({ method: "get", url: `api/v1/articles/${id}/comments` });
+const callComment = async (id: number, page: number, size: number) => {
+    const res = await axios({
+        method: "get",
+        url: `api/v1/articles/${id}/comments`,
+        params: { page, size },
+    });
     return res;
 };
 
@@ -23,11 +27,18 @@ function* handleRequestPost(action: PostAction) {
     } catch (e) {
         yield put({ type: PostTypes.FAIL_POST, payload: { error: e } });
     }
+}
 
+function* handleRequestComment(action: CommentAction) {
     try {
         const {
             data: { comments },
-        } = yield call(callComment, action.payload.id);
+        } = yield call(
+            callComment,
+            action.payload.id,
+            action.payload.page,
+            action.payload.size,
+        );
 
         yield put({
             type: PostTypes.SUCCESS_COMMENT,
@@ -40,4 +51,5 @@ function* handleRequestPost(action: PostAction) {
 
 export function* watchRequestPost() {
     yield takeEvery(PostTypes.REQUEST_POST, handleRequestPost);
+    yield takeEvery(PostTypes.REQUEST_COMMENT, handleRequestComment);
 }

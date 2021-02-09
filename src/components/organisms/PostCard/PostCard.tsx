@@ -35,6 +35,7 @@ interface IProps {
     handleClickLike: () => void;
     moreOnClick: () => void;
     successComment: () => void;
+    handleMoreComment: () => void;
 }
 
 const PostCard: React.FC<IProps> = ({
@@ -49,6 +50,7 @@ const PostCard: React.FC<IProps> = ({
     handleClickLike,
     moreOnClick,
     successComment,
+    handleMoreComment,
 }) => {
     const inputRef = createRef<HTMLInputElement>();
 
@@ -62,7 +64,6 @@ const PostCard: React.FC<IProps> = ({
 
     const handleClickCommentLike = (index: number) => {};
 
-    const handleMoreComment = () => {};
     const handleCommentClick = () => {};
 
     if (loading) {
@@ -90,9 +91,6 @@ const PostCard: React.FC<IProps> = ({
                         profileImageUrl={profileImageUrl}
                         content={content}
                     />
-                    {/* <CircleContainer onClick={handleMoreComment}>
-                        <BsPlusCircle size="24px" />
-                    </CircleContainer> */}
                     <CommentsContainer>
                         {comments.map((data, index) => (
                             <Comment
@@ -105,6 +103,9 @@ const PostCard: React.FC<IProps> = ({
                             />
                         ))}
                     </CommentsContainer>
+                    <CircleContainer onClick={handleMoreComment}>
+                        <BsPlusCircle size="24px" />
+                    </CircleContainer>
                 </ContentContainer>
                 <IconContainer>
                     <CommentIcon

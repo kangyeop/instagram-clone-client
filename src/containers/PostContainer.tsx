@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PostCard } from "components/organisms";
-import { requestPost } from "store/post/actions";
+import { requestPost, requestComment } from "store/post/actions";
 import { RootState } from "store/rootReducer";
 
 interface IProps {
@@ -9,10 +9,13 @@ interface IProps {
 }
 
 const PostContainer: React.FC<IProps> = ({ id }) => {
+    const [page, setPage] = useState<number>(0);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(requestPost({ id: parseFloat(id) }));
+        dispatch(requestComment({ id: parseFloat(id), page, size: 10 }));
     }, []);
 
     const handleClickLike = () => {
@@ -21,8 +24,14 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
 
     const moreOnClick = () => {};
 
+    const handleMoreComment = () => {
+        dispatch(requestComment({ id: parseFloat(id), page: page + 1, size: 10 }));
+        setPage(page + 1);
+    };
+
     const successComment = () => {
-        dispatch(requestPost({ id: parseFloat(id) }));
+        dispatch(requestComment({ id: parseFloat(id), page: 0, size: 10 }));
+        setPage(0);
     };
 
     const {
@@ -46,6 +55,7 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
             comments={comments}
             handleClickLike={handleClickLike}
             moreOnClick={moreOnClick}
+            handleMoreComment={handleMoreComment}
             successComment={successComment}
         />
     );

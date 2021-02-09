@@ -24,7 +24,6 @@ const postReducer = createReducer<IPostState, AllAction>(initialState, {
     }),
     [PostTypes.REQUEST_COMMENT]: (state) => ({
         ...state,
-        loading: true,
     }),
     [PostTypes.SUCCESS_POST]: (state, action) => ({
         ...state,
@@ -47,8 +46,7 @@ const postReducer = createReducer<IPostState, AllAction>(initialState, {
     }),
     [PostTypes.SUCCESS_COMMENT]: (state, action) => ({
         ...state,
-        comments: action.payload.comments,
-        loading: false,
+        comments: action.payload.comments.concat(state.comments),
     }),
     [PostTypes.FAIL_COMMENT]: (state, action) => ({
         ...state,
