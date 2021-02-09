@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PostCard } from "components/organisms";
-import { requestPost, requestComment } from "store/post/actions";
+import {
+    requestPost,
+    requestComment,
+    successComment as setComment,
+} from "store/post/actions";
 import { RootState } from "store/rootReducer";
+import { IComment } from "types/types";
 
 interface IProps {
     id: string;
@@ -17,6 +22,13 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
         dispatch(requestPost({ id: parseFloat(id) }));
         dispatch(requestComment({ id: parseFloat(id), page, size: 10 }));
     }, []);
+
+    useEffect(() => {
+        return () => {
+            const reset: IComment[] = [];
+            dispatch(setComment({ comments: reset }));
+        };
+    });
 
     const handleClickLike = () => {
         // dispatch like
@@ -41,6 +53,7 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
         loading,
         createdBy: { nickname, profileImageUrl },
         comments,
+        isMore,
     } = useSelector((state: RootState) => state.postReducer);
 
     return (
@@ -53,6 +66,7 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
             nickname={nickname}
             profileImageUrl={profileImageUrl}
             comments={comments}
+            isMore={isMore}
             handleClickLike={handleClickLike}
             moreOnClick={moreOnClick}
             handleMoreComment={handleMoreComment}

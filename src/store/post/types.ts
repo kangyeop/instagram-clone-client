@@ -30,6 +30,7 @@ export interface IPostState {
     createdBy: IAuthor;
     createdAt: string;
     comments: IComment[];
+    isMore: boolean;
     error?: string;
 }
 
@@ -41,4 +42,5 @@ export const PostTypes = {
     REQUEST_COMMENT: "REQUEST_COMMENT" as const,
     SUCCESS_COMMENT: "SUCCESS_COMMENT" as const,
     FAIL_COMMENT: "FAIL_COMMENT" as const,
+    SET_MORE: "SET_MORE" as const,
 };

@@ -40,6 +40,11 @@ function* handleRequestComment(action: CommentAction) {
             action.payload.size,
         );
 
+        if (comments.length === 0) {
+            yield put({ type: PostTypes.SET_MORE, payload: { isMore: false } });
+            return;
+        }
+
         yield put({
             type: PostTypes.SUCCESS_COMMENT,
             payload: { comments },

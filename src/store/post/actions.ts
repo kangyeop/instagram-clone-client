@@ -26,3 +26,5 @@ export const requestComment = createAction(PostTypes.REQUEST_COMMENT)<{
 }>();
 
 export const failComment = createAction(PostTypes.FAIL_COMMENT)<{ error: string }>();
+
+export const setMore = createAction(PostTypes.SET_MORE)<{ isMore: boolean }>();

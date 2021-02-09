@@ -30,6 +30,7 @@ interface IProps {
     nickname: string;
     profileImageUrl: string;
     loading: boolean;
+    isMore: boolean;
     id: number;
     comments: IComment[];
     handleClickLike: () => void;
@@ -45,6 +46,7 @@ const PostCard: React.FC<IProps> = ({
     nickname,
     profileImageUrl,
     loading,
+    isMore,
     id,
     comments,
     handleClickLike,
@@ -103,9 +105,13 @@ const PostCard: React.FC<IProps> = ({
                             />
                         ))}
                     </CommentsContainer>
-                    <CircleContainer onClick={handleMoreComment}>
-                        <BsPlusCircle size="24px" />
-                    </CircleContainer>
+                    {isMore ? (
+                        <CircleContainer onClick={handleMoreComment}>
+                            <BsPlusCircle size="24px" />
+                        </CircleContainer>
+                    ) : (
+                        <></>
+                    )}
                 </ContentContainer>
                 <IconContainer>
                     <CommentIcon

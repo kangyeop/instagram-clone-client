@@ -13,6 +13,7 @@ const initialState: IPostState = {
     },
     comments: [],
     createdAt: "",
+    isMore: true,
     loading: true,
     error: undefined,
 };
@@ -33,6 +34,8 @@ const postReducer = createReducer<IPostState, AllAction>(initialState, {
         imageUrls: action.payload.state.imageUrls,
         createdBy: action.payload.state.createdBy,
         createdAt: action.payload.state.createdAt,
+        comments: [],
+        isMore: true,
         loading: false,
     }),
     [PostTypes.FAIL_POST]: (state, action) => ({
@@ -46,12 +49,16 @@ const postReducer = createReducer<IPostState, AllAction>(initialState, {
     }),
     [PostTypes.SUCCESS_COMMENT]: (state, action) => ({
         ...state,
-        comments: action.payload.comments.concat(state.comments),
+        comments: state.comments.concat(action.payload.comments),
     }),
     [PostTypes.FAIL_COMMENT]: (state, action) => ({
         ...state,
         comments: [],
         error: action.payload.error,
+    }),
+    [PostTypes.SET_MORE]: (state, action) => ({
+        ...state,
+        isMore: action.payload.isMore,
     }),
 });
 
