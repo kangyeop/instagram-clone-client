@@ -1,52 +1,54 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RouteComponentProps, withRouter } from "react-router-dom";
 import { PostCard } from "components/organisms";
 import { requestPost } from "store/post/actions";
 import { RootState } from "store/rootReducer";
 
-interface IMatchProps {
+interface IProps {
     id: string;
 }
 
-interface IProps {
-    canClick: boolean;
-    // eslint-disable-next-line no-unused-vars
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    moreOnClick: () => void;
-}
-
-const PostContainer: React.FC<IProps & RouteComponentProps<IMatchProps>> = ({
-    canClick,
-    onChange,
-    moreOnClick,
-    match,
-}) => {
+const PostContainer: React.FC<IProps> = ({ id }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(requestPost({ id: parseFloat(match.params.id) }));
+        dispatch(requestPost({ id: parseFloat(id) }));
     }, []);
 
     const handleClickLike = () => {
         // dispatch like
     };
-    const { id, imageUrls, content, isLiked, loading } = useSelector(
-        (state: RootState) => state.postReducer,
-    );
+
+    const moreOnClick = () => {};
+
+    const successComment = () => {
+        dispatch(requestPost({ id: parseFloat(id) }));
+    };
+
+    const {
+        imageUrls,
+        content,
+        isLiked,
+        loading,
+        createdBy: { nickname, profileImageUrl },
+        comments,
+    } = useSelector((state: RootState) => state.postReducer);
 
     return (
         <PostCard
+            id={parseFloat(id)}
             loading={loading}
             images={imageUrls}
             isLike={isLiked}
             content={content}
-            canClick={canClick}
+            nickname={nickname}
+            profileImageUrl={profileImageUrl}
+            comments={comments}
             handleClickLike={handleClickLike}
-            onChange={onChange}
             moreOnClick={moreOnClick}
+            successComment={successComment}
         />
     );
 };
 
-export default withRouter(PostContainer);
+export default PostContainer;

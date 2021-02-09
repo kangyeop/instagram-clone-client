@@ -1,5 +1,6 @@
 import React from "react";
 import { Profile, Nickname, TimeText, ReComment, SVGImage } from "components/atoms";
+import { IComment } from "types/types";
 import {
     Container,
     ContentText,
@@ -10,12 +11,12 @@ import {
 } from "./styles";
 
 interface IProps {
-    text: string;
     isLike: boolean;
+    comment: IComment;
     handleClickCommentLike: () => void;
 }
 
-const Comment: React.FC<IProps> = ({ text, isLike, handleClickCommentLike }) => {
+const Comment: React.FC<IProps> = ({ isLike, comment, handleClickCommentLike }) => {
     const path = {
         liked:
             "M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z",
@@ -25,10 +26,11 @@ const Comment: React.FC<IProps> = ({ text, isLike, handleClickCommentLike }) => 
 
     return (
         <Container>
-            <Profile size="32px" />
+            <Profile source={comment.createdBy.profileImageUrl} size="32px" />
             <ContentContainer>
                 <ContentText>
-                    <Nickname text="mong_nyang_cartoon" size="14px" /> {text}
+                    <Nickname text={comment.createdBy.nickname} size="14px" />{" "}
+                    {comment.content}
                 </ContentText>
                 <DownContainer>
                     <TimeText text="1시간 전" size="12px" style={{ marginRight: "14px" }} />

@@ -11,6 +11,7 @@ import {
     Comment,
 } from "components/molecules";
 import { theme } from "styles";
+import { IComment } from "types/types";
 import {
     ImageContainer,
     ContentContainer,
@@ -18,33 +19,40 @@ import {
     IconContainer,
     RightContainer,
     CircleContainer,
+    MiddleContainer,
+    CommentsContainer,
 } from "./styles";
 
 interface IProps {
     images: string[];
     isLike: boolean;
-    canClick: boolean;
     content: string;
+    nickname: string;
+    profileImageUrl: string;
     loading: boolean;
-    // eslint-disable-next-line no-unused-vars
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    id: number;
+    comments: IComment[];
     handleClickLike: () => void;
     moreOnClick: () => void;
+    successComment: () => void;
 }
 
 const PostCard: React.FC<IProps> = ({
     images,
     isLike,
-    canClick,
     content,
+    nickname,
+    profileImageUrl,
     loading,
-    onChange,
+    id,
+    comments,
     handleClickLike,
     moreOnClick,
+    successComment,
 }) => {
     const inputRef = createRef<HTMLInputElement>();
 
-    const text = ["asdfasdfasdfafsdasdfasdfasdfasdfasdfadfasdf", "Asdf", "asdf", "asdf"];
+    // const text = ["asdfasdfasdfafsdasdfasdfasdfasdfasdfadfasdf", "Asdf", "asdf", "asdf"];
 
     const handleClickComment = () => {
         if (inputRef.current) {
@@ -58,7 +66,11 @@ const PostCard: React.FC<IProps> = ({
     const handleCommentClick = () => {};
 
     if (loading) {
-        return <Indicator type="spin" size="80px" color={theme.colors.lightText} />;
+        return (
+            <MiddleContainer>
+                <Indicator type="spin" size="80px" color={theme.colors.lightText} />
+            </MiddleContainer>
+        );
     }
     return (
         <BorderCard>
@@ -66,22 +78,33 @@ const PostCard: React.FC<IProps> = ({
                 <ImageSlider width="598px" height="598px" images={images} />
             </ImageContainer>
             <RightContainer>
-                <PostHeader height="72px" moreOnClick={moreOnClick} />
+                <PostHeader
+                    height="72px"
+                    nickname={nickname}
+                    profileImageUrl={profileImageUrl}
+                    moreOnClick={moreOnClick}
+                />
                 <ContentContainer>
-                    <PostContent content={content} />
-                    <CircleContainer onClick={handleMoreComment}>
+                    <PostContent
+                        nickname={nickname}
+                        profileImageUrl={profileImageUrl}
+                        content={content}
+                    />
+                    {/* <CircleContainer onClick={handleMoreComment}>
                         <BsPlusCircle size="24px" />
-                    </CircleContainer>
-                    {text.map((data, index) => (
-                        <Comment
-                            key={data + String(index)}
-                            text={data}
-                            isLike={false}
-                            handleClickCommentLike={() => {
-                                handleClickCommentLike(index);
-                            }}
-                        />
-                    ))}
+                    </CircleContainer> */}
+                    <CommentsContainer>
+                        {comments.map((data, index) => (
+                            <Comment
+                                key={data + String(index)}
+                                comment={data}
+                                isLike={false}
+                                handleClickCommentLike={() => {
+                                    handleClickCommentLike(index);
+                                }}
+                            />
+                        ))}
+                    </CommentsContainer>
                 </ContentContainer>
                 <IconContainer>
                     <CommentIcon
@@ -92,12 +115,7 @@ const PostCard: React.FC<IProps> = ({
                     <LikeString />
                 </IconContainer>
                 <CommentFormContainer>
-                    <CommentForm
-                        ref={inputRef}
-                        onChange={(e) => onChange(e)}
-                        onClick={handleCommentClick}
-                        canClick={canClick}
-                    />
+                    <CommentForm id={id} ref={inputRef} successComment={successComment} />
                 </CommentFormContainer>
             </RightContainer>
         </BorderCard>

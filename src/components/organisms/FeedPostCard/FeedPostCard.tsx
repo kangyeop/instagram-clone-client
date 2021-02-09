@@ -9,7 +9,7 @@ import {
     LikeString,
     MoreBox,
 } from "components/molecules";
-import PostCard from "components/organisms/PostCard";
+import { PostContainer } from "containers";
 import {
     ImageContainer,
     ContentContainer,
@@ -39,6 +39,8 @@ const FeedPostCard: React.FC<IProps> = ({
     const [isShow, setIsShow] = useState<boolean>(false);
     const inputRef = createRef<HTMLInputElement>();
 
+    const id = "10";
+
     const content = `TIEB 소프트터치 터틀넥 가디건의 마지막 3차 (입고 소식을 전합니다.
         \n니트는 제가 가장 깊히 알고 있는 분야이다보니 아무래도 신경이 더욱 쓰이지만, 그만큼 개인적인 애착의 마음도 큽니다. 때문에 이 제품엔 좀처럼 제게 없는 완벽주의적인 집착과 창작에 대한 순수한 기쁨이 모두 담겨 있습니다.`;
 
@@ -53,7 +55,8 @@ const FeedPostCard: React.FC<IProps> = ({
     return (
         <>
             <ModalContainer isShow={isShow} setIsShow={setIsShow}>
-                <PostCard
+                {/* <PostCard
+                    id={1}
                     loading={false}
                     moreOnClick={() => setMoreShow(true)}
                     images={images}
@@ -62,13 +65,19 @@ const FeedPostCard: React.FC<IProps> = ({
                     content={content}
                     onChange={onChange}
                     handleClickLike={handleClickLike}
-                />
+                /> */}
+                <></>
             </ModalContainer>
             <ModalContainer isShow={moreShow} setIsShow={setMoreShow}>
-                <MoreBox />
+                <MoreBox id={id} />
             </ModalContainer>
             <BorderCard style={{ flexDirection: "column", marginBottom: "60px" }}>
-                <PostHeader height="72px" moreOnClick={() => setMoreShow(true)} />
+                <PostHeader
+                    height="72px"
+                    profileImageUrl=""
+                    nickname=""
+                    moreOnClick={() => setMoreShow(true)}
+                />
                 <ImageContainer>
                     <ImageSlider width="614px" height="614px" images={images} />
                 </ImageContainer>
@@ -82,21 +91,19 @@ const FeedPostCard: React.FC<IProps> = ({
                         <LikeString isFeed />
                     </IconContainer>
                     <ContentContainer>
-                        <PostContent content={content} isFeed />
+                        <PostContent
+                            profileImageUrl=""
+                            nickname=""
+                            content={content}
+                            isFeed
+                        />
                         <LightBoldText onClick={() => setIsShow(true)}>
                             댓글 모두보기
                         </LightBoldText>
                         <TimeText text="1시간 전" size="12px" />
                     </ContentContainer>
                     <CommentFormContainer>
-                        <CommentForm
-                            ref={inputRef}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                onChange(e)
-                            }
-                            onClick={handleCommentClick}
-                            canClick={canClick}
-                        />
+                        <CommentForm ref={inputRef} id={1} successComment={() => {}} />
                     </CommentFormContainer>
                 </DownContainer>
             </BorderCard>

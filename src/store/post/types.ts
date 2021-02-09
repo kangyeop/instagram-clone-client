@@ -1,8 +1,25 @@
 import { ActionType } from "typesafe-actions";
-import { successPost, failPost, requestPost } from "./actions";
+import { successPost, failPost, requestPost, requestComment } from "./actions";
+import * as actions from "./actions";
 
-export type PostAction = ActionType<typeof successPost | typeof requestPost>;
+export type PostAction = ActionType<typeof requestPost>;
 export type FailAction = ActionType<typeof failPost>;
+export type SuccessAction = ActionType<typeof successPost>;
+export type CommentAction = ActionType<typeof requestComment>;
+export type AllAction = ActionType<typeof actions>;
+
+export interface IComment {
+    content: string;
+    createdBy: IAuthor;
+    createdAt: string;
+    nestedComments: IComment[];
+}
+
+interface IAuthor {
+    id: number;
+    nickname: string;
+    profileImageUrl: string;
+}
 
 export interface IPostState {
     id: number;
@@ -10,6 +27,9 @@ export interface IPostState {
     isLiked: boolean;
     imageUrls: string[];
     loading: boolean;
+    createdBy: IAuthor;
+    createdAt: string;
+    comments: IComment[];
     error?: string;
 }
 
@@ -18,4 +38,7 @@ export const PostTypes = {
     FAIL_POST: "POST_FAIL" as const,
     REQUEST_POST: "POST_REQUEST" as const,
     LIKE_POST: "LIKE_POST" as const,
+    REQUEST_COMMENT: "REQUEST_COMMENT" as const,
+    SUCCESS_COMMENT: "SUCCESS_COMMENT" as const,
+    FAIL_COMMENT: "FAIL_COMMENT" as const,
 };
