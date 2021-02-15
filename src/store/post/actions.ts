@@ -28,3 +28,15 @@ export const requestComment = createAction(PostTypes.REQUEST_COMMENT)<{
 export const failComment = createAction(PostTypes.FAIL_COMMENT)<{ error: string }>();
 
 export const setMore = createAction(PostTypes.SET_MORE)<{ isMore: boolean }>();
+
+export const successLike = createAction(PostTypes.SUCCESS_LIKE)<{ id: number }>();
+
+export const failLike = createAction(PostTypes.FAIL_LIKE)<{ error: string }>();
+
+export const requestLike = createAction(PostTypes.REQUEST_LIKE)<{
+    id: number;
+}>();
+
+export const setComment = createAction(PostTypes.SET_COMMENT)<{
+    comments: IComment[];
+}>();

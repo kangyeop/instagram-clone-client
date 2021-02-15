@@ -1,11 +1,12 @@
 import { ActionType } from "typesafe-actions";
-import { successPost, failPost, requestPost, requestComment } from "./actions";
+import { successPost, failPost, requestPost, requestComment, requestLike } from "./actions";
 import * as actions from "./actions";
 
 export type PostAction = ActionType<typeof requestPost>;
 export type FailAction = ActionType<typeof failPost>;
 export type SuccessAction = ActionType<typeof successPost>;
 export type CommentAction = ActionType<typeof requestComment>;
+export type LikeAction = ActionType<typeof requestLike>;
 export type AllAction = ActionType<typeof actions>;
 
 export interface IComment {
@@ -42,5 +43,9 @@ export const PostTypes = {
     REQUEST_COMMENT: "REQUEST_COMMENT" as const,
     SUCCESS_COMMENT: "SUCCESS_COMMENT" as const,
     FAIL_COMMENT: "FAIL_COMMENT" as const,
+    SET_COMMENT: "SET_COMMENT" as const,
+    SUCCESS_LIKE: "SUCCESS_LIKE" as const,
+    REQUEST_LIKE: "REQUEST_LIKE" as const,
+    FAIL_LIKE: "FAIL_LIKE" as const,
     SET_MORE: "SET_MORE" as const,
 };

@@ -56,8 +56,6 @@ const PostCard: React.FC<IProps> = ({
 }) => {
     const inputRef = createRef<HTMLInputElement>();
 
-    // const text = ["asdfasdfasdfafsdasdfasdfasdfasdfasdfadfasdf", "Asdf", "asdf", "asdf"];
-
     const handleClickComment = () => {
         if (inputRef.current) {
             inputRef.current.focus();
@@ -65,8 +63,6 @@ const PostCard: React.FC<IProps> = ({
     };
 
     const handleClickCommentLike = (index: number) => {};
-
-    const handleCommentClick = () => {};
 
     if (loading) {
         return (

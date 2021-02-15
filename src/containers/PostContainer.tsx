@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PostCard } from "components/organisms";
@@ -5,6 +6,7 @@ import {
     requestPost,
     requestComment,
     successComment as setComment,
+    requestLike,
 } from "store/post/actions";
 import { RootState } from "store/rootReducer";
 import { IComment } from "types/types";
@@ -20,18 +22,10 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
 
     useEffect(() => {
         dispatch(requestPost({ id: parseFloat(id) }));
-        dispatch(requestComment({ id: parseFloat(id), page, size: 10 }));
     }, []);
 
-    useEffect(() => {
-        return () => {
-            const reset: IComment[] = [];
-            dispatch(setComment({ comments: reset }));
-        };
-    });
-
     const handleClickLike = () => {
-        // dispatch like
+        dispatch(requestLike({ id: parseFloat(id) }));
     };
 
     const moreOnClick = () => {};
@@ -43,7 +37,6 @@ const PostContainer: React.FC<IProps> = ({ id }) => {
 
     const successComment = () => {
         dispatch(requestComment({ id: parseFloat(id), page: 0, size: 10 }));
-        setPage(0);
     };
 
     const {

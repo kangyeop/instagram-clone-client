@@ -34,7 +34,7 @@ const postReducer = createReducer<IPostState, AllAction>(initialState, {
         imageUrls: action.payload.state.imageUrls,
         createdBy: action.payload.state.createdBy,
         createdAt: action.payload.state.createdAt,
-        comments: [],
+        comments: action.payload.state.comments,
         isMore: true,
         loading: false,
     }),
@@ -59,6 +59,18 @@ const postReducer = createReducer<IPostState, AllAction>(initialState, {
     [PostTypes.SET_MORE]: (state, action) => ({
         ...state,
         isMore: action.payload.isMore,
+    }),
+    [PostTypes.FAIL_LIKE]: (state, action) => ({
+        ...state,
+        error: action.payload.error,
+    }),
+    [PostTypes.SUCCESS_LIKE]: (state) => ({
+        ...state,
+        isLiked: !state.isLiked,
+    }),
+    [PostTypes.SET_COMMENT]: (state, action) => ({
+        ...state,
+        comments: action.payload.comments,
     }),
 });
 

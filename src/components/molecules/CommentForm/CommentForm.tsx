@@ -38,7 +38,6 @@ const CommentForm: React.ForwardRefRenderFunction<HTMLInputElement, IProps> = (
 
         if (res.status === 201) {
             successComment();
-            console.log(res.data);
 
             alert("댓글이 정상적으로 등록되었습니다.");
             setComment("");
