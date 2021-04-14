@@ -27,6 +27,9 @@
             {
                 "extensions": [".js", ".jsx", ".ts", ".tsx"]
             }
-        ]
+        ],
+        "prettier/prettier": ["error", {
+            "endOfLine":"auto"
+          }]
     }
 }

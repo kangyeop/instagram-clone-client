@@ -1,8 +1,6 @@
 import { createAction } from "typesafe-actions";
 import { AuthTypes } from "./types";
 
-export const setToken = createAction(AuthTypes.SET_TOKEN)<{
-    accessToken: string;
-}>();
+export const setLogin = createAction(AuthTypes.SET_TOKEN)();
 
-export const delToken = createAction(AuthTypes.DEL_TOKEN)();
+export const delLogin = createAction(AuthTypes.DEL_TOKEN)();

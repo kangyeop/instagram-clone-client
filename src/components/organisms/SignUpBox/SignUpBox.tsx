@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from "react";
 import { SignUpInputBox, UploadButton, Indicator, SignUpButton } from "components/atoms";
-import { imgurAxios } from "api/axios";
+import { axios, imgurAxios } from "api/axios";
 import { LogoBox } from "components/molecules";
 import { theme } from "styles";
 import { useHistory } from "react-router-dom";
@@ -64,23 +64,43 @@ const SignUpBox: React.FC = () => {
     };
 
     const handleOnClick = async () => {
-        if (!name || !nickName || !profile || !description) {
+        if (!name || !nickName || !description) {
             return;
         }
-
-        const params = new URLSearchParams({
+        const a = window.location.search.substr(1).split("=");
+        const JSESSIONID = a[1];
+        console.log(JSESSIONID);
+        const params = {
             name,
             nickname: nickName,
             profileImageUrl: profileUrl,
             description,
-            redirectUri: `${process.env.REACT_APP_DOMAIN}loginloading`,
-        });
-
-        history.push({ pathname: "/signUpRequest", search: params.toString() });
+        };
+        try {
+            document.cookie = `JSESSIONID=${JSESSIONID}`;
+            console.log(document.cookie);
+            const { status } = await axios({
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                url: "/api/v1/members/signup",
+                method: "post",
+                data: params,
+                withCredentials: true,
+            });
+            if (status === 201) {
+                history.push("/loginLoading");
+            } else {
+                alert("회원가입 도중 오류가 발생하였습니다.");
+            }
+        } catch (e) {
+            console.log(e);
+            alert("오류가 발생하였습니다.");
+        }
     };
 
     useEffect(() => {
-        if (name && nickName && profile && description) {
+        if (name && nickName && description) {
             setCanClick(true);
         } else {
             setCanClick(false);

@@ -2,14 +2,7 @@
 import Axios from "axios";
 import { store } from "store";
 
-export const axios = Axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-});
-
-axios.interceptors.request.use((config) => {
-    config.headers.Authorization = store.getState().authReducer.accessToken || "";
-    return config;
-});
+export const axios = Axios.create({});
 
 export const imgurAxios = Axios.create({
     baseURL: process.env.REACT_APP_IMGUR_URL,
