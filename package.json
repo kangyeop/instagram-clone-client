@@ -79,5 +79,6 @@
         "eslint-plugin-react": "^7.21.5",
         "prettier": "^2.2.1",
         "ts-jest": "^26.4.4"
-    }
+    },
+    "proxy": "https://instagram-clone-5erver.herokuapp.com"
 }

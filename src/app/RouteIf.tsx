@@ -12,7 +12,7 @@ interface IProps {
 const RouteIf: React.FC<IProps> = ({ component, path, exact, to, isLoggedIn }) => {
     return (
         <Route exact={exact} path={path} component={component}>
-            {isLoggedIn ? null : <Redirect to={to} />}
+            {/* {isLoggedIn ? null : <Redirect to={to} />} */}
         </Route>
     );
 };

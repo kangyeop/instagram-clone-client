@@ -14,7 +14,7 @@ const LoginContainer: React.FC = () => {
 
     useEffect(() => {
         if (accessToken) {
-            dispatch(setToken({ accessToken }));
+            dispatch(setToken({ accessToken: "" }));
             history.push("/");
         } else {
             history.push("/signup");

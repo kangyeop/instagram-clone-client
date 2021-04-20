@@ -10,6 +10,7 @@ export type LikeAction = ActionType<typeof requestLike>;
 export type AllAction = ActionType<typeof actions>;
 
 export interface IComment {
+    id: number;
     content: string;
     createdBy: IAuthor;
     createdAt: string;
@@ -48,4 +49,6 @@ export const PostTypes = {
     REQUEST_LIKE: "REQUEST_LIKE" as const,
     FAIL_LIKE: "FAIL_LIKE" as const,
     SET_MORE: "SET_MORE" as const,
+    REQUEST_COMMENT_LIKE: "REQUEST_COMMENT_LIKE" as const,
+    SUCCESS_COMMENT_LIKE: "SUCCESS_COMMENT_LIKE" as const,
 };

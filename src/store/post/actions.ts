@@ -40,3 +40,11 @@ export const requestLike = createAction(PostTypes.REQUEST_LIKE)<{
 export const setComment = createAction(PostTypes.SET_COMMENT)<{
     comments: IComment[];
 }>();
+
+export const successCommentLike = createAction(PostTypes.SUCCESS_COMMENT_LIKE)<{
+    id: number;
+}>();
+
+export const requestCommentLike = createAction(PostTypes.REQUEST_COMMENT_LIKE)<{
+    id: number;
+}>();

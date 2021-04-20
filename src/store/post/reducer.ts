@@ -72,6 +72,14 @@ const postReducer = createReducer<IPostState, AllAction>(initialState, {
         ...state,
         comments: action.payload.comments,
     }),
+    // [PostTypes.SUCCESS_COMMENT_LIKE]: (state, action) =>
+    //     produce(state, (draft) => {
+    //         draft.comments.map((res) => {
+    //             if (res.id === action.payload.id) {
+    //                 res.
+    //             }
+    //         });
+    //     }),
 });
 
 export default postReducer;
